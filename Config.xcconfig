@@ -1,0 +1,23 @@
+// Your Apple developer Team ID (10 characters). Xcode → Settings → Accounts → your Apple ID → the team.
+// The app and widget share settings through the App Group "<TEAM_ID>.flaremeter", so both must be signed by this team.
+CFU_TEAM_ID = 64YA5374UZ
+
+// Where the API token is kept.
+//   YES: the Keychain, shared by the app and widget (keychain-access-groups). Use with a paid Apple Developer Program
+//        team: App Store and Developer ID builds. A free Personal Team's provisioning profile for this expires after
+//        7 days, and the app then stops launching.
+//   NO:  the App Group container (private to the app and widget). For personal builds with a free Personal Team.
+CFU_KEYCHAIN = NO
+
+CFU_ENTITLEMENTS_SUFFIX_YES = -Keychain
+CFU_ENTITLEMENTS_SUFFIX_NO =
+CFU_ENTITLEMENTS_SUFFIX = $(CFU_ENTITLEMENTS_SUFFIX_$(CFU_KEYCHAIN))
+CFU_KEYCHAIN_GROUP_YES = $(AppIdentifierPrefix)com.manishrana.FlareMeter.shared
+CFU_KEYCHAIN_GROUP_NO =
+CFU_KEYCHAIN_GROUP = $(CFU_KEYCHAIN_GROUP_$(CFU_KEYCHAIN))
+
+// Updates: Sparkle (https://sparkle-project.org). The feed lives on the website; scripts/release.sh writes it.
+// ("/$()/" keeps "//" from starting an xcconfig comment.)
+CFU_APPCAST_URL = https:/$()/flaremeter.app/appcast.xml
+// From Sparkle's generate_keys (the private half stays in your login Keychain). Releases are signed with it.
+CFU_SPARKLE_PUBLIC_KEY = Bk2uKWHlyanTW+JQOYArmdAw8cZ3Ya3PfXzn1qPZwhg=

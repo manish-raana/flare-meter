@@ -1,0 +1,65 @@
+name: FlareMeter
+options:
+  bundleIdPrefix: com.manishrana
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+configFiles:
+  Debug: Config.xcconfig
+  Release: Config.xcconfig
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: $(CFU_TEAM_ID)
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    ENABLE_HARDENED_RUNTIME: YES
+    INFOPLIST_KEY_NSHumanReadableCopyright: "© 2026 Manish Rana"
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: 2.6.0
+targets:
+  FlareMeter:
+    type: application
+    platform: macOS
+    sources: [App, Shared]
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: FlareMeter
+        CFUAppGroup: $(CFU_TEAM_ID).flaremeter
+        SUFeedURL: $(CFU_APPCAST_URL)
+        SUPublicEDKey: $(CFU_SPARKLE_PUBLIC_KEY)
+        SUEnableInstallerLauncherService: true
+        CFUKeychainGroup: $(CFU_KEYCHAIN_GROUP)
+        LSApplicationCategoryType: public.app-category.developer-tools
+        LSUIElement: true
+        ITSAppUsesNonExemptEncryption: false
+        NSHumanReadableCopyright: "© 2026 Manish Rana"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.manishrana.FlareMeter
+        CODE_SIGN_ENTITLEMENTS: App/FlareMeter$(CFU_ENTITLEMENTS_SUFFIX).entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    dependencies:
+      - target: FlareMeterWidget
+        embed: true
+      - package: Sparkle
+  FlareMeterWidget:
+    type: app-extension
+    platform: macOS
+    sources: [Widget, Shared]
+    info:
+      path: Widget/Info.plist
+      properties:
+        CFBundleDisplayName: FlareMeter
+        CFUAppGroup: $(CFU_TEAM_ID).flaremeter
+        CFUKeychainGroup: $(CFU_KEYCHAIN_GROUP)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.manishrana.FlareMeter.Widget
+        CODE_SIGN_ENTITLEMENTS: Widget/FlareMeterWidget$(CFU_ENTITLEMENTS_SUFFIX).entitlements

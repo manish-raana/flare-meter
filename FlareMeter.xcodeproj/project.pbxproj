@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0B739B921348171F3D6630AE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE54701229128B03120EC6A /* Settings.swift */; };
+		1433755EAFB6D2321257D42D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31C1A5737D79214EAFCFD7B /* SettingsView.swift */; };
+		1F8E177920C708056C2CC221 /* UsageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FBB6CF530824330093A7E7 /* UsageStore.swift */; };
+		207D3EA27065A18B55355F77 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE54701229128B03120EC6A /* Settings.swift */; };
+		2DFEE17294448F54F3C6F8D3 /* UsageRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB169371EEEA5B4844A3BBB8 /* UsageRefresher.swift */; };
+		2FBD002D7D4E446D646BCA55 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 9AA6C4F8498E25F89BE68098 /* Sparkle */; };
+		3AB927B126D2158CAFA3E3C6 /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B1811ED4DBD4052723D9B /* TokenStore.swift */; };
+		3C2A5FB47E2A0FFF98F2CA0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0137AB4252841A9ED2DE6E48 /* Assets.xcassets */; };
+		3E0EF519D412A2CE68B2840B /* WidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8DB1E985E172FD6F4A92E /* WidgetViews.swift */; };
+		3E1881490DF7B66B87EBA0C4 /* AppUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A9279CCDA25547E2F68541 /* AppUpdater.swift */; };
+		48C1DB68B6C179258FEE2474 /* SetupSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1AFE1BD2CF5D697576B91E /* SetupSections.swift */; };
+		4AFD650A1041D0E3F2759417 /* CloudflareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F318B82AED712BE42EC6393D /* CloudflareClient.swift */; };
+		4D4BE052C4BB7B85234B63D8 /* CloudflareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F318B82AED712BE42EC6393D /* CloudflareClient.swift */; };
+		4E21AE88BB6871BD92E4450D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FB519F686FFEA98A89FF45F3 /* PrivacyInfo.xcprivacy */; };
+		5921FC550A9197CCAF0245D4 /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD33B53B2C56EEE817EA29 /* Metrics.swift */; };
+		6995BED57BD0A982F71B5864 /* FlareMeterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD5660B2359ECE0F9A3D9B /* FlareMeterApp.swift */; };
+		75746E953D8D0F1808F71F5A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FB519F686FFEA98A89FF45F3 /* PrivacyInfo.xcprivacy */; };
+		7CF2B633C894693026415F6B /* UsageRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB169371EEEA5B4844A3BBB8 /* UsageRefresher.swift */; };
+		85CAFB270850F8577817FDCB /* WidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8DB1E985E172FD6F4A92E /* WidgetViews.swift */; };
+		86C9A935FEDB895B2A924E76 /* UsageViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030BBBF2854114E3F43B0365 /* UsageViews.swift */; };
+		8AF22D11D66C14F4F862D72E /* FlareMeterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACCD30B01093EAE2A3C890D /* FlareMeterWidget.swift */; };
+		94BB5011B980D5AA74FED763 /* FlareMeterWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 39606D413F558B07AFB9E165 /* FlareMeterWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A7D30AD1E5777B3218D686EB /* WelcomeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C612C227D2083B3DC00408EB /* WelcomeWindow.swift */; };
+		A93B6C27B48FAF5EDED4D37C /* UsageViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030BBBF2854114E3F43B0365 /* UsageViews.swift */; };
+		BD78D3A38002B9C3CE8CD9CF /* MarketingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E32AAD37F01BA6E9D86D148 /* MarketingRenderer.swift */; };
+		BEE40558739CC97F62F94079 /* UsageAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21444BA5FA4FBF5CFD258E0 /* UsageAlerts.swift */; };
+		C50C041915102EAD4A9D8E98 /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD33B53B2C56EEE817EA29 /* Metrics.swift */; };
+		CEFAD7845674E07E456283A4 /* MenuBarPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BBDB8FAC3AFF5E9119A157 /* MenuBarPanel.swift */; };
+		DF735F620E50840EA29C9861 /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B1811ED4DBD4052723D9B /* TokenStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC4A036F678874D06FA8B71E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7A2A8126DC4810E5BBC356F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A00E18D9C73669114B76E53;
+			remoteInfo = FlareMeterWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F24A071D8E708030A2BFED8D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				94BB5011B980D5AA74FED763 /* FlareMeterWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0137AB4252841A9ED2DE6E48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		030BBBF2854114E3F43B0365 /* UsageViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViews.swift; sourceTree = "<group>"; };
+		39606D413F558B07AFB9E165 /* FlareMeterWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FlareMeterWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E32AAD37F01BA6E9D86D148 /* MarketingRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingRenderer.swift; sourceTree = "<group>"; };
+		432B46E5FA1840DB4DFD1651 /* FlareMeterWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlareMeterWidget.entitlements; sourceTree = "<group>"; };
+		501D60F96C8CDD4AE5DFA80B /* FlareMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlareMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54BBDB8FAC3AFF5E9119A157 /* MenuBarPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPanel.swift; sourceTree = "<group>"; };
+		75A9279CCDA25547E2F68541 /* AppUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdater.swift; sourceTree = "<group>"; };
+		849DD722F1EC1326C9DF9744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		850B1811ED4DBD4052723D9B /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
+		8DE54701229128B03120EC6A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		8FB5220D735624C4F91DCFC3 /* FlareMeter-Keychain.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FlareMeter-Keychain.entitlements"; sourceTree = "<group>"; };
+		9AAD33B53B2C56EEE817EA29 /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metrics.swift; sourceTree = "<group>"; };
+		A21444BA5FA4FBF5CFD258E0 /* UsageAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageAlerts.swift; sourceTree = "<group>"; };
+		A5945283F5E594073FAED05E /* FlareMeterWidget-Keychain.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FlareMeterWidget-Keychain.entitlements"; sourceTree = "<group>"; };
+		AACCD30B01093EAE2A3C890D /* FlareMeterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlareMeterWidget.swift; sourceTree = "<group>"; };
+		AD1AFE1BD2CF5D697576B91E /* SetupSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSections.swift; sourceTree = "<group>"; };
+		B0FBB6CF530824330093A7E7 /* UsageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageStore.swift; sourceTree = "<group>"; };
+		C612C227D2083B3DC00408EB /* WelcomeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeWindow.swift; sourceTree = "<group>"; };
+		DADD5660B2359ECE0F9A3D9B /* FlareMeterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlareMeterApp.swift; sourceTree = "<group>"; };
+		E31C1A5737D79214EAFCFD7B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EA8039E29646217445229E2B /* FlareMeter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlareMeter.entitlements; sourceTree = "<group>"; };
+		ECA8DB1E985E172FD6F4A92E /* WidgetViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViews.swift; sourceTree = "<group>"; };
+		F318B82AED712BE42EC6393D /* CloudflareClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudflareClient.swift; sourceTree = "<group>"; };
+		FB169371EEEA5B4844A3BBB8 /* UsageRefresher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageRefresher.swift; sourceTree = "<group>"; };
+		FB519F686FFEA98A89FF45F3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		FF2B2CDB306A1EC9A8484B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		"TEMP_A57F1FC8-9E06-4DB1-AE58-38EDD582342C" /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC727BEBA118A4ECF726FB4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FBD002D7D4E446D646BCA55 /* Sparkle in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2EB8816B4BA0E6F60B76B1A1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				75A9279CCDA25547E2F68541 /* AppUpdater.swift */,
+				0137AB4252841A9ED2DE6E48 /* Assets.xcassets */,
+				8FB5220D735624C4F91DCFC3 /* FlareMeter-Keychain.entitlements */,
+				EA8039E29646217445229E2B /* FlareMeter.entitlements */,
+				DADD5660B2359ECE0F9A3D9B /* FlareMeterApp.swift */,
+				849DD722F1EC1326C9DF9744 /* Info.plist */,
+				3E32AAD37F01BA6E9D86D148 /* MarketingRenderer.swift */,
+				54BBDB8FAC3AFF5E9119A157 /* MenuBarPanel.swift */,
+				E31C1A5737D79214EAFCFD7B /* SettingsView.swift */,
+				AD1AFE1BD2CF5D697576B91E /* SetupSections.swift */,
+				A21444BA5FA4FBF5CFD258E0 /* UsageAlerts.swift */,
+				B0FBB6CF530824330093A7E7 /* UsageStore.swift */,
+				C612C227D2083B3DC00408EB /* WelcomeWindow.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		558B4E87FF9D9D596AB328CE /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				A5945283F5E594073FAED05E /* FlareMeterWidget-Keychain.entitlements */,
+				432B46E5FA1840DB4DFD1651 /* FlareMeterWidget.entitlements */,
+				AACCD30B01093EAE2A3C890D /* FlareMeterWidget.swift */,
+				FF2B2CDB306A1EC9A8484B83 /* Info.plist */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		8BFDE5AAF125399B3B086C86 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				501D60F96C8CDD4AE5DFA80B /* FlareMeter.app */,
+				39606D413F558B07AFB9E165 /* FlareMeterWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8FB62A053405A0FF4134ECBB /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F318B82AED712BE42EC6393D /* CloudflareClient.swift */,
+				9AAD33B53B2C56EEE817EA29 /* Metrics.swift */,
+				FB519F686FFEA98A89FF45F3 /* PrivacyInfo.xcprivacy */,
+				8DE54701229128B03120EC6A /* Settings.swift */,
+				850B1811ED4DBD4052723D9B /* TokenStore.swift */,
+				FB169371EEEA5B4844A3BBB8 /* UsageRefresher.swift */,
+				030BBBF2854114E3F43B0365 /* UsageViews.swift */,
+				ECA8DB1E985E172FD6F4A92E /* WidgetViews.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B18CCB3DE88EE909AC0BC337 = {
+			isa = PBXGroup;
+			children = (
+				2EB8816B4BA0E6F60B76B1A1 /* App */,
+				8FB62A053405A0FF4134ECBB /* Shared */,
+				558B4E87FF9D9D596AB328CE /* Widget */,
+				8BFDE5AAF125399B3B086C86 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		"TEMP_0C0CDBAF-E7EF-44C9-ACA1-A295316716EC" /* flare-meter */ = {
+			isa = PBXGroup;
+			children = (
+				"TEMP_A57F1FC8-9E06-4DB1-AE58-38EDD582342C" /* Config.xcconfig */,
+			);
+			path = "flare-meter";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2A00E18D9C73669114B76E53 /* FlareMeterWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBB4332C86ABFEB19512AF82 /* Build configuration list for PBXNativeTarget "FlareMeterWidget" */;
+			buildPhases = (
+				1B4D8319642DA44B8B68373A /* Sources */,
+				15DC2B622ED962BADC90B12F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FlareMeterWidget;
+			packageProductDependencies = (
+			);
+			productName = FlareMeterWidget;
+			productReference = 39606D413F558B07AFB9E165 /* FlareMeterWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		73962A9A1C642818617D7D97 /* FlareMeter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D111D5C96F0AFE3701AFAA3 /* Build configuration list for PBXNativeTarget "FlareMeter" */;
+			buildPhases = (
+				500A5B61472FC7014759AB48 /* Sources */,
+				B83D30D93F47FA87D1BA8F3E /* Resources */,
+				DC727BEBA118A4ECF726FB4E /* Frameworks */,
+				F24A071D8E708030A2BFED8D /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1145C170D7B74F315887DBE /* PBXTargetDependency */,
+			);
+			name = FlareMeter;
+			packageProductDependencies = (
+				9AA6C4F8498E25F89BE68098 /* Sparkle */,
+			);
+			productName = FlareMeter;
+			productReference = 501D60F96C8CDD4AE5DFA80B /* FlareMeter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E7A2A8126DC4810E5BBC356F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					2A00E18D9C73669114B76E53 = {
+						DevelopmentTeam = "$(CFU_TEAM_ID)";
+						ProvisioningStyle = Automatic;
+					};
+					73962A9A1C642818617D7D97 = {
+						DevelopmentTeam = "$(CFU_TEAM_ID)";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E1FA6948EE01219957737F1C /* Build configuration list for PBXProject "FlareMeter" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = B18CCB3DE88EE909AC0BC337;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CEABCA4135E3DADFF6F988A4 /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8BFDE5AAF125399B3B086C86 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73962A9A1C642818617D7D97 /* FlareMeter */,
+				2A00E18D9C73669114B76E53 /* FlareMeterWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15DC2B622ED962BADC90B12F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E21AE88BB6871BD92E4450D /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B83D30D93F47FA87D1BA8F3E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C2A5FB47E2A0FFF98F2CA0D /* Assets.xcassets in Resources */,
+				75746E953D8D0F1808F71F5A /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1B4D8319642DA44B8B68373A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AFD650A1041D0E3F2759417 /* CloudflareClient.swift in Sources */,
+				8AF22D11D66C14F4F862D72E /* FlareMeterWidget.swift in Sources */,
+				C50C041915102EAD4A9D8E98 /* Metrics.swift in Sources */,
+				207D3EA27065A18B55355F77 /* Settings.swift in Sources */,
+				DF735F620E50840EA29C9861 /* TokenStore.swift in Sources */,
+				2DFEE17294448F54F3C6F8D3 /* UsageRefresher.swift in Sources */,
+				A93B6C27B48FAF5EDED4D37C /* UsageViews.swift in Sources */,
+				85CAFB270850F8577817FDCB /* WidgetViews.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		500A5B61472FC7014759AB48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E1881490DF7B66B87EBA0C4 /* AppUpdater.swift in Sources */,
+				4D4BE052C4BB7B85234B63D8 /* CloudflareClient.swift in Sources */,
+				6995BED57BD0A982F71B5864 /* FlareMeterApp.swift in Sources */,
+				BD78D3A38002B9C3CE8CD9CF /* MarketingRenderer.swift in Sources */,
+				CEFAD7845674E07E456283A4 /* MenuBarPanel.swift in Sources */,
+				5921FC550A9197CCAF0245D4 /* Metrics.swift in Sources */,
+				0B739B921348171F3D6630AE /* Settings.swift in Sources */,
+				1433755EAFB6D2321257D42D /* SettingsView.swift in Sources */,
+				48C1DB68B6C179258FEE2474 /* SetupSections.swift in Sources */,
+				3AB927B126D2158CAFA3E3C6 /* TokenStore.swift in Sources */,
+				BEE40558739CC97F62F94079 /* UsageAlerts.swift in Sources */,
+				7CF2B633C894693026415F6B /* UsageRefresher.swift in Sources */,
+				1F8E177920C708056C2CC221 /* UsageStore.swift in Sources */,
+				86C9A935FEDB895B2A924E76 /* UsageViews.swift in Sources */,
+				A7D30AD1E5777B3218D686EB /* WelcomeWindow.swift in Sources */,
+				3E0EF519D412A2CE68B2840B /* WidgetViews.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E1145C170D7B74F315887DBE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A00E18D9C73669114B76E53 /* FlareMeterWidget */;
+			targetProxy = DC4A036F678874D06FA8B71E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		31B99E402EB5781D3FBE9FBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "App/FlareMeter$(CFU_ENTITLEMENTS_SUFFIX).entitlements";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.manishrana.FlareMeter;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		580998A7E8B6A175A720FE42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = "TEMP_A57F1FC8-9E06-4DB1-AE58-38EDD582342C" /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "$(CFU_TEAM_ID)";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Manish Rana";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5E150CDDFDA8098C2ACD1CA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = "TEMP_A57F1FC8-9E06-4DB1-AE58-38EDD582342C" /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "$(CFU_TEAM_ID)";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Manish Rana";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		6E2BCC1AA42623D06F117EAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Widget/FlareMeterWidget$(CFU_ENTITLEMENTS_SUFFIX).entitlements";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Widget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.manishrana.FlareMeter.Widget;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B666D5D8BF771345C3E5E817 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "App/FlareMeter$(CFU_ENTITLEMENTS_SUFFIX).entitlements";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.manishrana.FlareMeter;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CB493EE024E476F4C6FF9DC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Widget/FlareMeterWidget$(CFU_ENTITLEMENTS_SUFFIX).entitlements";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Widget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.manishrana.FlareMeter.Widget;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8D111D5C96F0AFE3701AFAA3 /* Build configuration list for PBXNativeTarget "FlareMeter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31B99E402EB5781D3FBE9FBF /* Debug */,
+				B666D5D8BF771345C3E5E817 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BBB4332C86ABFEB19512AF82 /* Build configuration list for PBXNativeTarget "FlareMeterWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E2BCC1AA42623D06F117EAE /* Debug */,
+				CB493EE024E476F4C6FF9DC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E1FA6948EE01219957737F1C /* Build configuration list for PBXProject "FlareMeter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				580998A7E8B6A175A720FE42 /* Debug */,
+				5E150CDDFDA8098C2ACD1CA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CEABCA4135E3DADFF6F988A4 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9AA6C4F8498E25F89BE68098 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEABCA4135E3DADFF6F988A4 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = E7A2A8126DC4810E5BBC356F /* Project object */;
+}
