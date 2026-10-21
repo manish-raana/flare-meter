@@ -331,7 +331,7 @@ any warranty.
 In short, you can use, study, change and share FlareMeter. If you distribute a modified version, or let others use one
 over a network, you must make its source available under the same license.
 
-Copyright © 2026 Manish Rana ([mkrana173@gmail.com](mailto:mkrana173@gmail.com), GitHub [@manish-raana](https://github.com/manish-raana)).
+Copyright © 2026 Manish Rana ([mkrana173@gmail.com](mailto:mkrana173@gmail.com), GitHub [@manish-raana](https://github.com/manish-raana), X [@ManishRaanaa](https://x.com/ManishRaanaa)).
 
 <br>
 
