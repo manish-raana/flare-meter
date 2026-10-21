@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Page } from "@/components/Page";
+import { pageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Terms",
   description: `The terms for ${site.name}: free, open-source software under the ${site.license}, provided as is.`,
-  alternates: { canonical: "/terms" },
-};
+  path: "/terms",
+});
 
 const mail = <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>;
 

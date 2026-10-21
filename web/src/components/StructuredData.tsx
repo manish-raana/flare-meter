@@ -1,4 +1,5 @@
 import { faqs } from "@/lib/faqs";
+import { shareImage } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
 /** Schema.org data for search engines: the app (free) and the FAQ. */
@@ -10,7 +11,7 @@ export function StructuredData() {
       name: site.name,
       description: site.description,
       url: site.url,
-      image: `${site.url}/og.png`,
+      image: `${site.url}${shareImage("home").url}`,
       applicationCategory: "DeveloperApplication",
       operatingSystem: `${site.minimumMacOS} or later`,
       isAccessibleForFree: true,

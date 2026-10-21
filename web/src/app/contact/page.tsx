@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { Page } from "@/components/Page";
+import { pageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact",
   description: `Questions, bugs or ideas about ${site.name}? Email ${site.supportEmail} or open an issue on GitHub.`,
-  alternates: { canonical: "/contact" },
-};
+  path: "/contact",
+});
 
 export default function Contact() {
   return (

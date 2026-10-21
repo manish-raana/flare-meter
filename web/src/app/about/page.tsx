@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Page } from "@/components/Page";
+import { pageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "About",
   description: `Why ${site.name} exists, who makes it, and how it works.`,
-  alternates: { canonical: "/about" },
-};
+  path: "/about",
+});
 
 export default function About() {
   return (

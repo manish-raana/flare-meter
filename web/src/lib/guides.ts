@@ -1,6 +1,11 @@
 /** The guides, for the index page, the sitemap and llms.txt. */
 export type GuideInfo = { slug: string; title: string; description: string; updated: string };
 
+export const guidesIndex = {
+  title: "Cloudflare Workers guides: limits, pricing and monitoring",
+  description: "Plain-English guides to Cloudflare Workers Free limits, Workers Paid pricing, and monitoring your usage.",
+};
+
 export const guides: GuideInfo[] = [
   {
     slug: "cloudflare-workers-free-plan-limits",

@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
 import { Page } from "@/components/Page";
+import { pageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Privacy",
   description: `${site.name} has no accounts, analytics or tracking. Your Cloudflare token stays on your Mac. Here's every network call the app makes.`,
-  alternates: { canonical: "/privacy" },
-};
+  path: "/privacy",
+});
 
 const mail = <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>;
 

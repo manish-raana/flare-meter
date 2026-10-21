@@ -1,13 +1,9 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Page, formatDate } from "@/components/Page";
-import { guides } from "@/lib/guides";
+import { guides, guidesIndex } from "@/lib/guides";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Cloudflare Workers guides: limits, pricing and monitoring",
-  description: "Plain-English guides to Cloudflare Workers Free limits, Workers Paid pricing, and monitoring your usage.",
-  alternates: { canonical: "/guides" },
-};
+export const metadata = pageMetadata({ ...guidesIndex, path: "/guides", card: "guides" });
 
 export default function Guides() {
   return (

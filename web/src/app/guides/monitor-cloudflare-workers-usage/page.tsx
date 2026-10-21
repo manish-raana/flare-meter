@@ -1,17 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Guide, type QA } from "@/components/Guide";
 import { guides } from "@/lib/guides";
+import { pageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
 const info = guides.find((g) => g.slug === "monitor-cloudflare-workers-usage")!;
 
-export const metadata: Metadata = {
-  title: info.title,
-  description: info.description,
-  alternates: { canonical: `/guides/${info.slug}` },
-  openGraph: { type: "article", title: info.title, description: info.description, url: `/guides/${info.slug}` },
-};
+export const metadata = pageMetadata({ title: info.title, description: info.description, path: `/guides/${info.slug}`, type: "article", card: info.slug });
 
 const faqs: QA[] = [
   { q: "Where do I see Cloudflare Workers usage in the dashboard?", a: "Open dash.cloudflare.com, choose your account, then Workers & Pages. The overview shows requests across your Workers; each Worker's Metrics tab shows its own. KV, D1 and Durable Objects each show usage on their own pages." },

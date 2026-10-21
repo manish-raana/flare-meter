@@ -1,16 +1,11 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Guide, LimitsTable, type QA } from "@/components/Guide";
 import { guides } from "@/lib/guides";
+import { pageMetadata } from "@/lib/metadata";
 
 const info = guides.find((g) => g.slug === "cloudflare-workers-free-plan-limits")!;
 
-export const metadata: Metadata = {
-  title: info.title,
-  description: info.description,
-  alternates: { canonical: `/guides/${info.slug}` },
-  openGraph: { type: "article", title: info.title, description: info.description, url: `/guides/${info.slug}` },
-};
+export const metadata = pageMetadata({ title: info.title, description: info.description, path: `/guides/${info.slug}`, type: "article", card: info.slug });
 
 const faqs: QA[] = [
   { q: "Is the Workers Free request limit per Worker or per account?", a: "Per account. The 100,000 requests a day are shared by every Worker on the account, so one busy Worker can use up the allowance for all of them." },

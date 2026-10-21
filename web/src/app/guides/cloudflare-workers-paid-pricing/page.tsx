@@ -1,16 +1,11 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Guide, LimitsTable, type QA } from "@/components/Guide";
 import { guides } from "@/lib/guides";
+import { pageMetadata } from "@/lib/metadata";
 
 const info = guides.find((g) => g.slug === "cloudflare-workers-paid-pricing")!;
 
-export const metadata: Metadata = {
-  title: info.title,
-  description: info.description,
-  alternates: { canonical: `/guides/${info.slug}` },
-  openGraph: { type: "article", title: info.title, description: info.description, url: `/guides/${info.slug}` },
-};
+export const metadata = pageMetadata({ title: info.title, description: info.description, path: `/guides/${info.slug}`, type: "article", card: info.slug });
 
 const faqs: QA[] = [
   { q: "How much does Cloudflare Workers Paid cost?", a: "A minimum of $5 per month per account. That includes 10 million Worker requests and 30 million CPU milliseconds a month, plus included amounts for Durable Objects, KV and D1. Usage past them is billed per million." },

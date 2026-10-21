@@ -4,6 +4,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { Page, ProductNote, QuickAnswer } from "@/components/Page";
 import { guides, type GuideInfo } from "@/lib/guides";
 import { asOf, limits, sources, type Limit } from "@/lib/limits";
+import { shareImage } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
 export type QA = { q: string; a: string };
@@ -25,7 +26,7 @@ export function Guide({ info, answer, faqs, children }: { info: GuideInfo; answe
             datePublished: info.updated,
             author: { "@type": "Person", name: site.author.name, url: site.author.url },
             publisher: { "@type": "Organization", name: site.seller.name, url: site.url, logo: `${site.url}/icon.png` },
-            image: `${site.url}/og.png`,
+            image: `${site.url}${shareImage(info.slug).url}`,
           },
           {
             "@context": "https://schema.org",
