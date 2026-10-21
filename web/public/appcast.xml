@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>FlareMeter</title>
+        <item>
+            <title>1.0</title>
+            <pubDate>Wed, 21 Oct 2026 13:09:48 +0530</pubDate>
+            <link>https://flaremeter.app</link>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://flaremeter.app/downloads/FlareMeter-1.0.dmg" length="2649836" type="application/octet-stream" sparkle:edSignature="tsAfESvOZ2j4CGLh9xEQVejdnkq4fe77hl7bX7V1Vfa7OIk7FmHSQEsZTGNC42f9phiSfP62nHUGNartXETNCA=="/>
+        </item>
+    </channel>
+</rss>

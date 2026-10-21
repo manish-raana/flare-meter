@@ -7,7 +7,7 @@ CFU_TEAM_ID = 64YA5374UZ
 //        team: App Store and Developer ID builds. A free Personal Team's provisioning profile for this expires after
 //        7 days, and the app then stops launching.
 //   NO:  the App Group container (private to the app and widget). For personal builds with a free Personal Team.
-CFU_KEYCHAIN = NO
+CFU_KEYCHAIN = YES
 
 CFU_ENTITLEMENTS_SUFFIX_YES = -Keychain
 CFU_ENTITLEMENTS_SUFFIX_NO =

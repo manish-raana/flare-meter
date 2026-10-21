@@ -90,7 +90,7 @@
 		FB169371EEEA5B4844A3BBB8 /* UsageRefresher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageRefresher.swift; sourceTree = "<group>"; };
 		FB519F686FFEA98A89FF45F3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		FF2B2CDB306A1EC9A8484B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		"TEMP_A57F1FC8-9E06-4DB1-AE58-38EDD582342C" /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		"TEMP_B229BA5C-446E-46D6-A518-8AB45B8CC6FD" /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,10 +170,10 @@
 			);
 			sourceTree = "<group>";
 		};
-		"TEMP_0C0CDBAF-E7EF-44C9-ACA1-A295316716EC" /* flare-meter */ = {
+		"TEMP_B6EAFF3C-7224-447C-B78D-2463420A0204" /* flare-meter */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_A57F1FC8-9E06-4DB1-AE58-38EDD582342C" /* Config.xcconfig */,
+				"TEMP_B229BA5C-446E-46D6-A518-8AB45B8CC6FD" /* Config.xcconfig */,
 			);
 			path = "flare-meter";
 			sourceTree = "<group>";
@@ -351,7 +351,7 @@
 		};
 		580998A7E8B6A175A720FE42 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_A57F1FC8-9E06-4DB1-AE58-38EDD582342C" /* Config.xcconfig */;
+			baseConfigurationReference = "TEMP_B229BA5C-446E-46D6-A518-8AB45B8CC6FD" /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -421,7 +421,7 @@
 		};
 		5E150CDDFDA8098C2ACD1CA7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_A57F1FC8-9E06-4DB1-AE58-38EDD582342C" /* Config.xcconfig */;
+			baseConfigurationReference = "TEMP_B229BA5C-446E-46D6-A518-8AB45B8CC6FD" /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
