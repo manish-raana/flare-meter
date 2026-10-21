@@ -37,6 +37,14 @@ export function Footer() {
           <p>
             <a href={`mailto:${site.supportEmail}`} className="hover:text-white">{site.supportEmail}</a>
           </p>
+          <a
+            href={site.coffeeUrl}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center gap-2 rounded-full bg-[#FFDD00] px-4 py-2 font-semibold text-black transition hover:brightness-95"
+          >
+            <span aria-hidden>☕</span> Buy me a coffee
+          </a>
         </div>
         {columns.map((c) => (
           <div key={c.title}>

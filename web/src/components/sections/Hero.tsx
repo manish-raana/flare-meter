@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { DownloadCount } from "@/components/DownloadCount";
 import { LargeWidget, MediumWidget, MenuBar, Panel, SmallWidget } from "@/components/mock/AppMocks";
 import { ScaledStage, useCountUp } from "@/components/ui/animated";
 import { fraction, sampleMetrics } from "@/lib/sample";
@@ -83,6 +84,7 @@ export function Hero() {
           </a>
         </motion.div>
         <p className="mt-4 text-sm text-white/40">Free and open source · {site.minimumMacOS} or later · No account, no tracking</p>
+        <DownloadCount className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/70 tabular-nums" />
       </div>
 
       <motion.div

@@ -33,8 +33,8 @@ export default function Terms() {
           itself.
         </li>
         <li>
-          <a href={site.sponsorUrl}>Sponsoring</a> is voluntary and happens on GitHub. It doesn&rsquo;t buy a license,
-          features or support terms.
+          <a href={site.sponsorUrl}>Sponsoring</a> and <a href={site.coffeeUrl}>buying me a coffee</a> are voluntary and
+          happen on GitHub and Buy Me a Coffee. They don&rsquo;t buy a license, features or support terms.
         </li>
       </ul>
 

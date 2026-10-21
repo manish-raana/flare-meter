@@ -6,6 +6,7 @@ export const site = {
   downloadUrl: "/FlareMeter.dmg",
   githubUrl: "https://github.com/manish-raana/flare-meter",
   sponsorUrl: "https://github.com/sponsors/manish-raana",
+  coffeeUrl: "https://buymeacoffee.com/manishrana",
   license: "AGPL-3.0",
   supportEmail: "support@flaremeter.app",
   /** Who makes and runs FlareMeter (shown on the legal pages and the contact page). */

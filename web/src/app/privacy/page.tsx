@@ -48,11 +48,16 @@ export default function Privacy() {
         <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">
           GitHub&rsquo;s privacy statement
         </a>
-        . The app doesn&rsquo;t know whether you sponsor.
+        . If you buy me a coffee, that happens on Buy Me a Coffee, under{" "}
+        <a href="https://buymeacoffee.com/privacy-policy" rel="noopener">its privacy policy</a>. The app doesn&rsquo;t
+        know whether you do either.
       </p>
 
       <h2>This website</h2>
-      <p>A static site with no cookies, analytics or tracking scripts.</p>
+      <p>
+        A static site with no cookies, analytics or tracking scripts. It keeps one number: how many times{" "}
+        <code>FlareMeter.dmg</code> has been downloaded. Nothing about who downloaded it is stored.
+      </p>
 
       <h2>Contact</h2>
       <p>

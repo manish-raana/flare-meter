@@ -13,6 +13,7 @@ and Workers AI.
 [![Swift](https://img.shields.io/badge/SwiftUI-WidgetKit-F05138?style=flat-square&logo=swift&logoColor=white)](#how-it-works)
 [![Download](https://img.shields.io/badge/download-free-ff7a2f?style=flat-square)](https://flaremeter.app/FlareMeter.dmg)
 [![Sponsor](https://img.shields.io/badge/sponsor-%E2%99%A5-ea4aaa?style=flat-square&logo=githubsponsors&logoColor=white)](https://github.com/sponsors/manish-raana)
+[![Buy me a coffee](https://img.shields.io/badge/buy_me_a_coffee-%E2%98%95-FFDD00?style=flat-square&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/manishrana)
 
 [Website](https://flaremeter.app) ·
 [Download](https://flaremeter.app/FlareMeter.dmg) ·
@@ -316,10 +317,12 @@ Group container, and it only needs read access to account analytics. The full po
 
 ## Sponsor
 
-FlareMeter is free, and it stays free. Sponsoring pays for the Apple Developer Program membership that signs and
-notarizes the download, and for the time it takes to keep up with Cloudflare's limits and prices.
+FlareMeter is free, and it stays free. Sponsoring, or buying me a coffee, pays for the Apple Developer Program
+membership that signs and notarizes the download, and for the time it takes to keep up with Cloudflare's limits and
+prices.
 
 <a href="https://github.com/sponsors/manish-raana"><img src="https://img.shields.io/badge/Sponsor_FlareMeter-%E2%99%A5-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="Sponsor FlareMeter on GitHub"></a>
+<a href="https://buymeacoffee.com/manishrana"><img src="https://img.shields.io/badge/Buy_me_a_coffee-%E2%98%95-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy me a coffee"></a>
 
 ## License
 
