@@ -17,9 +17,12 @@ SITE_URL=https://flaremeter.app
 OUT=build/release
 VERSION=$(sed -n 's/^ *MARKETING_VERSION: "\(.*\)"/\1/p' project.yml)
 BUILD=$(sed -n 's/^ *CURRENT_PROJECT_VERSION: "\(.*\)"/\1/p' project.yml)
-TEAM=$(sed -n 's/^CFU_TEAM_ID = *//p' Config.xcconfig)
+# Local.xcconfig, if any, overrides Config.xcconfig; the last setting wins.
+CONFIGS="Config.xcconfig $( [ -f Local.xcconfig ] && echo Local.xcconfig )"
+TEAM=$(cat $CONFIGS | sed -n 's/^CFU_TEAM_ID = *//p' | tail -1)
+KEYCHAIN=$(cat $CONFIGS | sed -n 's/^CFU_KEYCHAIN = *//p' | tail -1)
 
-grep -q '^CFU_KEYCHAIN = YES' Config.xcconfig || { echo "Set CFU_KEYCHAIN = YES in Config.xcconfig (paid team)."; exit 1; }
+[ "$KEYCHAIN" = YES ] || { echo "Set CFU_KEYCHAIN = YES (paid team) in Config.xcconfig or Local.xcconfig."; exit 1; }
 if [ -f web/public/appcast.xml ] && grep -q "<sparkle:version>$BUILD</sparkle:version>" web/public/appcast.xml; then
   echo "Build $BUILD is already released: raise CURRENT_PROJECT_VERSION in project.yml."; exit 1
 fi

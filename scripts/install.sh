@@ -1,5 +1,5 @@
 #!/bin/sh
-# Builds your own Release copy, signed with your Apple ID's free Personal Team (CFU_TEAM_ID in Config.xcconfig), and
+# Builds your own Release copy, signed with your Apple ID's free Personal Team (CFU_TEAM_ID in Local.xcconfig), and
 # installs it in /Applications, so the menu bar app and widget run without Xcode. No paid developer account is needed.
 # For the signed and notarized download, use scripts/release.sh.
 # The Apple Development certificate lasts a year; run this again after Xcode renews it (or after any code change).

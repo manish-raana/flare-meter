@@ -141,8 +141,13 @@ Worker requests and errors can be narrowed down to a single Worker. Every other 
    cd flare-meter
    ```
 
-2. In [Config.xcconfig](Config.xcconfig), set `CFU_TEAM_ID` to your own team ID. Leave `CFU_KEYCHAIN = NO` for a
-   Personal Team (see [where the token is kept](#where-the-token-is-kept-cfu_keychain)).
+2. Create `Local.xcconfig` next to [Config.xcconfig](Config.xcconfig) with your own team ID. It's git-ignored and
+   overrides `Config.xcconfig`. Use `CFU_KEYCHAIN = NO` for a Personal Team (see
+   [where the token is kept](#where-the-token-is-kept-cfu_keychain)).
+
+   ```sh
+   printf 'CFU_TEAM_ID = YOURTEAMID\nCFU_KEYCHAIN = NO\n' > Local.xcconfig
+   ```
 
 3. Build and install a Release copy to `/Applications`, so it runs without Xcode:
 
@@ -170,6 +175,7 @@ Worker requests and errors can be narrowed down to a single Worker. Every other 
 ## Configuration
 
 All build-time settings are in [Config.xcconfig](Config.xcconfig) and reach the app and widget through `Info.plist`.
+Put your own values in a git-ignored `Local.xcconfig`, which overrides it.
 
 | Setting                  | Purpose                                                                                         |
 | ------------------------ | ----------------------------------------------------------------------------------------------- |
@@ -280,7 +286,7 @@ Issues and pull requests are welcome. A few things help:
   is out of date, a pull request that links the pricing page is one of the most useful contributions you can make.
 - **Larger changes.** Open an issue first, so we can agree on the approach before you put time in.
 - **Project files.** Change [project.yml](project.yml), not the generated `FlareMeter.xcodeproj`.
-- **Your team ID.** Keep your own `CFU_TEAM_ID` out of pull requests.
+- **Your team ID.** Put your own `CFU_TEAM_ID` in `Local.xcconfig`, which git ignores, not in `Config.xcconfig`.
 - **Screenshots.** If you change how the panel or widgets look, run `scripts/render-marketing.sh` to regenerate the
   images in `marketing/` and `docs/images/` from the real views.
 
