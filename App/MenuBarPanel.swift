@@ -57,6 +57,9 @@ struct MenuBarPanel: View {
                 }
             }
             Spacer()
+            if store.settings.isComplete, !rendersStatically {
+                accountMenu
+            }
             if store.settings.isComplete {
                 if rendersStatically {
                     IconButton("arrow.clockwise", help: "Refresh now") {}
@@ -68,6 +71,26 @@ struct MenuBarPanel: View {
                 }
             }
         }
+    }
+
+    /// The account being shown; pick another connected one, or add one in Settings.
+    private var accountMenu: some View {
+        Menu {
+            Picker("Account", selection: Binding(get: { store.settings.accountID }, set: { store.switchAccount(to: $0) })) {
+                ForEach(store.settings.savedAccounts) { Text($0.name).tag($0.id) }
+            }
+            .pickerStyle(.inline)
+            .labelsHidden()
+            Divider()
+            Button("Add Account…", action: showSettings)
+        } label: {
+            Text(store.settings.accountName).lineLimit(1).truncationMode(.middle)
+        }
+        .menuStyle(.borderlessButton)
+        .font(.caption)
+        .frame(maxWidth: 130)
+        .fixedSize(horizontal: false, vertical: true)
+        .help("Switch account")
     }
 
     private var setup: some View {

@@ -1,9 +1,10 @@
 import SwiftUI
 
-/// Connect with one pasted token: the account is found from it. Shared by Settings and the welcome window; saves the
-/// settings when the token works.
+/// Connect with one pasted token: the account is found from it. Shared by Settings (also to add another account) and
+/// the welcome window; saves the settings when the token works.
 struct ConnectSection: View {
     @Environment(UsageStore.self) private var store
+    var title = "Connect Cloudflare"
     /// After saving, with the accounts the token can read.
     var onConnect: ([CloudflareClient.Account]) async -> Void = { _ in }
 
@@ -65,7 +66,7 @@ struct ConnectSection: View {
                 Label(connectError, systemImage: "exclamationmark.triangle.fill").font(.caption).foregroundStyle(.red)
             }
         } header: {
-            Text("Connect Cloudflare")
+            Text(title)
         } footer: {
             Text(TokenStore.usesKeychain
                  ? "The token can only read analytics. It's kept in your Keychain and sent only to Cloudflare."
@@ -95,8 +96,7 @@ struct ConnectSection: View {
                 found = [CloudflareClient.Account(id: id, name: id)]
             }
             var s = UsageSettings.load()
-            s.apiToken = token
-            if !found.contains(where: { $0.id == s.accountID }) { s.accountID = found[0].id }
+            try s.connect(found, token: token)
             try s.save()
             store.settingsChanged()
             tokenDraft = ""

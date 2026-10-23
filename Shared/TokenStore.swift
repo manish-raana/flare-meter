@@ -1,9 +1,9 @@
 import Foundation
 import Security
 
-/// The API token. With `CFU_KEYCHAIN = YES` (paid team builds), a data protection Keychain item in a shared access
-/// group, so the app and the widget can both read it and nothing else can. Otherwise (free Personal Team builds, which
-/// can't keep that entitlement), the App Group's defaults, private to the app and widget.
+/// The API tokens, one per connected account. With `CFU_KEYCHAIN = YES` (paid team builds), data protection Keychain
+/// items in a shared access group, so the app and the widget can both read them and nothing else can. Otherwise (free
+/// Personal Team builds, which can't keep that entitlement), the App Group's defaults, private to the app and widget.
 enum TokenStore {
     enum StoreError: LocalizedError {
         case keychain(OSStatus)
@@ -22,21 +22,44 @@ enum TokenStore {
 
     static var usesKeychain: Bool { !accessGroup.isEmpty }
 
-    private static let defaultsKey = "apiToken"
+    /// Before accounts had their own tokens there was one, under this name. It's still read for accounts without
+    /// their own, so an update keeps working, and removed with the last account.
+    private static let legacyName = "cloudflare"
 
-    private static var baseQuery: [String: Any] {
+    /// Each account's token is kept under its own name.
+    private static func name(_ accountID: String) -> String { "\(legacyName):\(accountID)" }
+
+    private static func defaultsKey(_ name: String) -> String { name == legacyName ? "apiToken" : "apiToken.\(name)" }
+
+    private static func baseQuery(_ name: String) -> [String: Any] {
         [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: "com.manishrana.FlareMeter.apiToken",
-            kSecAttrAccount as String: "cloudflare",
+            kSecAttrAccount as String: name,
             kSecAttrAccessGroup as String: accessGroup,
             kSecUseDataProtectionKeychain as String: true,
         ]
     }
 
-    static func read() -> String {
-        guard usesKeychain else { return UsageSettings.defaults?.string(forKey: defaultsKey) ?? "" }
-        var query = baseQuery
+    /// The token for `accountID`, or the one from before per-account tokens; empty when there's neither.
+    static func read(accountID: String) -> String {
+        let own = accountID.isEmpty ? "" : read(name: name(accountID))
+        return own.isEmpty ? read(name: legacyName) : own
+    }
+
+    /// Saves `accountID`'s token; an empty one removes it.
+    static func write(_ token: String, accountID: String) throws {
+        try write(token, name: name(accountID))
+    }
+
+    /// Removes the token from before per-account tokens.
+    static func removeLegacy() {
+        try? write("", name: legacyName)
+    }
+
+    private static func read(name: String) -> String {
+        guard usesKeychain else { return UsageSettings.defaults?.string(forKey: defaultsKey(name)) ?? "" }
+        var query = baseQuery(name)
         query[kSecReturnData as String] = true
         query[kSecMatchLimit as String] = kSecMatchLimitOne
         var item: CFTypeRef?
@@ -44,15 +67,14 @@ enum TokenStore {
         return String(decoding: data, as: UTF8.self)
     }
 
-    /// Saves the token; an empty one removes it.
-    static func write(_ token: String) throws {
+    private static func write(_ token: String, name: String) throws {
         guard usesKeychain else {
-            UsageSettings.defaults?.set(token.isEmpty ? nil : token, forKey: defaultsKey)
+            UsageSettings.defaults?.set(token.isEmpty ? nil : token, forKey: defaultsKey(name))
             return
         }
-        SecItemDelete(baseQuery as CFDictionary)
+        SecItemDelete(baseQuery(name) as CFDictionary)
         guard !token.isEmpty else { return }
-        var query = baseQuery
+        var query = baseQuery(name)
         query[kSecValueData as String] = Data(token.utf8)
         // The widget refreshes in the background, so it must read the token while the Mac is locked.
         query[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlock
