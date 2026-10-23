@@ -53,7 +53,7 @@ struct MenuBarPanel: View {
             VStack(alignment: .leading, spacing: 1) {
                 Text("FlareMeter").font(.headline)
                 if let s = store.snapshot, store.settings.isComplete {
-                    Text(periodText(s.plan)).font(.caption).foregroundStyle(.secondary)
+                    Text(periodText(s)).font(.caption).foregroundStyle(.secondary)
                 }
             }
             Spacer()
@@ -145,9 +145,13 @@ struct MenuBarPanel: View {
         NSApp.activate()
     }
 
-    /// "Today · resets in 5h 12m" (Free plan, daily caps reset 00:00 UTC) or "This month" (Paid).
-    private func periodText(_ plan: Plan) -> String {
-        guard plan == .free else { return "This month so far" }
+    /// "Today · resets in 5h 12m" (Free plan, daily caps reset 00:00 UTC) or "This month · about $7.40 bill" (Paid,
+    /// with the plan's base fee).
+    private func periodText(_ s: UsageSnapshot) -> String {
+        guard s.plan == .free else {
+            guard let bill = s.estimatedBillUSD else { return "This month so far" }
+            return "This month · about \(bill.formatted(.currency(code: "USD"))) bill"
+        }
         let now = Date()
         return "Today · resets in \(Format.duration(UTC.nextMidnight(after: now).timeIntervalSince(now)))"
     }

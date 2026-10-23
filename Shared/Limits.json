@@ -1,0 +1,30 @@
+{
+  "comment": "Cloudflare's published limits and prices, read by the app (Shared/Metrics.swift) and the website (web/src/lib/limits.ts). Check them against https://developers.cloudflare.com/workers/platform/pricing/ before each release, and update asOf and lastReviewed.",
+  "asOf": "October 2026",
+  "lastReviewed": "2026-10-23",
+  "paidBaseUSD": 5,
+  "metrics": [
+    { "id": "workerRequests", "product": "Workers", "metric": "Requests",
+      "freeDaily": 100000, "paidIncluded": 10000000, "paidIncludedPer": "month", "paidPriceUSD": 0.30, "paidPricePer": 1000000 },
+    { "id": "workerCPUTime", "product": "Workers", "metric": "CPU time (ms)",
+      "freeText": "10 ms per request", "paidIncluded": 30000000, "paidIncludedPer": "month", "paidPriceUSD": 0.02, "paidPricePer": 1000000 },
+    { "id": "doRequests", "product": "Durable Objects", "metric": "Requests",
+      "freeDaily": 100000, "paidIncluded": 1000000, "paidIncludedPer": "month", "paidPriceUSD": 0.15, "paidPricePer": 1000000 },
+    { "id": "doRowsRead", "product": "Durable Objects", "metric": "Rows read (SQLite)",
+      "freeDaily": 5000000, "paidIncluded": 25000000000, "paidIncludedPer": "month", "paidPriceUSD": 0.001, "paidPricePer": 1000000 },
+    { "id": "doRowsWritten", "product": "Durable Objects", "metric": "Rows written (SQLite)",
+      "freeDaily": 100000, "paidIncluded": 50000000, "paidIncludedPer": "month", "paidPriceUSD": 1.00, "paidPricePer": 1000000 },
+    { "id": "doStorage", "product": "Durable Objects", "metric": "Stored data", "unit": "bytes", "total": true,
+      "freeDaily": 5000000000, "paidIncluded": 5000000000, "paidIncludedPer": "month" },
+    { "id": "kvReads", "product": "Workers KV", "metric": "Reads",
+      "freeDaily": 100000, "paidIncluded": 10000000, "paidIncludedPer": "month", "paidPriceUSD": 0.50, "paidPricePer": 1000000 },
+    { "id": "kvWrites", "product": "Workers KV", "metric": "Writes, deletes and lists",
+      "freeDaily": 1000, "paidIncluded": 1000000, "paidIncludedPer": "month", "paidPriceUSD": 5.00, "paidPricePer": 1000000 },
+    { "id": "d1RowsRead", "product": "D1", "metric": "Rows read",
+      "freeDaily": 5000000, "paidIncluded": 25000000000, "paidIncludedPer": "month", "paidPriceUSD": 0.001, "paidPricePer": 1000000 },
+    { "id": "d1RowsWritten", "product": "D1", "metric": "Rows written",
+      "freeDaily": 100000, "paidIncluded": 50000000, "paidIncludedPer": "month", "paidPriceUSD": 1.00, "paidPricePer": 1000000 },
+    { "id": "aiNeurons", "product": "Workers AI", "metric": "Neurons",
+      "freeDaily": 10000, "paidIncluded": 10000, "paidIncludedPer": "day", "paidPriceUSD": 0.011, "paidPricePer": 1000 }
+  ]
+}
