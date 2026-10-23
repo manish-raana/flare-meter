@@ -1,7 +1,9 @@
-// The site is static files (out/). This Worker only sees what wrangler.jsonc routes to it first: downloads of
-// FlareMeter.dmg, which it counts, and /api/downloads, which reads the count for the landing page. Every other path is
-// answered by the static files (and their 404 page) without running it.
+// The site is static files (out/). This Worker only sees what wrangler.jsonc routes to it first: the DMG downloads,
+// which it counts (FlareMeter.dmg) and sends to GitHub Releases when the DMG isn't among the static files, and
+// /api/downloads, which reads the count for the landing page. Every other path is answered by the static files (and
+// their 404 page) without running it.
 import { DurableObject } from "cloudflare:workers";
+import { releaseURL } from "./downloads";
 
 interface Env {
   ASSETS: Fetcher;
@@ -38,7 +40,10 @@ export default {
     }
 
     if (url.pathname === "/FlareMeter.dmg" && isNewDownload(request)) ctx.waitUntil(counter.add());
-    return env.ASSETS.fetch(request);
+    const asset = await env.ASSETS.fetch(request);
+    if (asset.status !== 404) return asset;
+    const release = releaseURL(url.pathname);
+    return release ? Response.redirect(release, 302) : asset;
   },
 } satisfies ExportedHandler<Env>;
 

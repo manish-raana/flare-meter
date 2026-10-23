@@ -21,3 +21,7 @@ CFU_KEYCHAIN_GROUP = $(CFU_KEYCHAIN_GROUP_$(CFU_KEYCHAIN))
 CFU_APPCAST_URL = https:/$()/flaremeter.app/appcast.xml
 // From Sparkle's generate_keys (the private half stays in your login Keychain). Releases are signed with it.
 CFU_SPARKLE_PUBLIC_KEY = Bk2uKWHlyanTW+JQOYArmdAw8cZ3Ya3PfXzn1qPZwhg=
+
+// Your own settings for a build from source (CFU_TEAM_ID, CFU_KEYCHAIN = NO for a free Personal Team) go in
+// Local.xcconfig next to this file. It's git-ignored and overrides anything above, so this file stays untouched.
+#include? "Local.xcconfig"

@@ -8,10 +8,10 @@ struct SettingsView: View {
 
     @Environment(UsageStore.self) private var store
     @State private var settings = UsageSettings.load()
-    @State private var accounts: [CloudflareClient.Account] = []
     @State private var workers: [String] = []
     @State private var customWorker = ""
     @State private var showAdvanced = false
+    @State private var addingAccount = false
     @State private var message: String?
     @State private var launchAtLogin = SMAppService.mainApp.status == .enabled
     @State private var autoUpdate = AppUpdater.shared.automaticallyChecks
@@ -22,9 +22,8 @@ struct SettingsView: View {
             if settings.isComplete {
                 connectedSection
             } else {
-                ConnectSection { found in
+                ConnectSection { _ in
                     settings = UsageSettings.load()
-                    accounts = found
                     await loadWorkers()
                 }
             }
@@ -69,24 +68,29 @@ struct SettingsView: View {
         .padding(.vertical, 8)
         .task { await loadDetails() }
         .onChange(of: settings.accountID) { Task { await loadWorkers() } }
+        // Switched from the menu bar panel.
+        .onChange(of: store.settings) { settings = store.settings }
     }
 
     // MARK: Connected
 
+    @ViewBuilder
     private var connectedSection: some View {
         Section {
             HStack(spacing: 10) {
                 Image(systemName: "checkmark.circle.fill").font(.title2).foregroundStyle(.green)
                 VStack(alignment: .leading, spacing: 1) {
                     Text("Connected")
-                    Text(accountName).font(.caption).foregroundStyle(.secondary)
+                    Text(settings.accountName).font(.caption).foregroundStyle(.secondary)
                 }
                 Spacer()
-                Button("Disconnect") { disconnect() }
+                Button("Add Account…") { addingAccount.toggle() }
+                Button(settings.savedAccounts.count > 1 ? "Remove" : "Disconnect") { remove() }
+                    .help("Forget this account and its token")
             }
-            if accounts.count > 1 {
-                Picker("Account", selection: binding(\.accountID)) {
-                    ForEach(accounts) { Text($0.name).tag($0.id) }
+            if settings.savedAccounts.count > 1 {
+                Picker("Account", selection: Binding(get: { settings.accountID }, set: switchAccount)) {
+                    ForEach(settings.savedAccounts) { Text($0.name).tag($0.id) }
                 }
             }
             Picker("Worker", selection: binding(\.workerScript)) {
@@ -100,13 +104,16 @@ struct SettingsView: View {
         } header: {
             Text("Cloudflare")
         } footer: {
-            Text("Free plan limits are account-wide, so All Workers matches what Cloudflare enforces. Limits and prices as of \(Metrics.pricingAsOf).")
+            Text("Free plan limits are account-wide, so All Workers matches what Cloudflare enforces. Each account keeps its own Worker and plan. Limits and prices as of \(Metrics.pricingAsOf).")
                 .font(.caption).foregroundStyle(.secondary)
         }
-    }
-
-    private var accountName: String {
-        accounts.first { $0.id == settings.accountID }?.name ?? settings.accountID
+        if addingAccount {
+            ConnectSection(title: "Add an account") { _ in
+                settings = UsageSettings.load()
+                addingAccount = false
+                await loadWorkers()
+            }
+        }
     }
 
     /// Discovered Workers, plus the saved one if it had no recent traffic (so the picker can show it).
@@ -123,13 +130,24 @@ struct SettingsView: View {
         })
     }
 
-    private func disconnect() {
+    private func switchAccount(_ id: String) {
         var s = settings
-        s.apiToken = ""
-        s.accountID = ""
+        s.select(id)
         apply(s)
-        accounts = []
+    }
+
+    /// Forgets the shown account; another connected one, if any, takes its place.
+    private func remove() {
+        var s = settings
+        do {
+            try s.remove(s.accountID)
+        } catch {
+            message = error.localizedDescription
+            return
+        }
+        settings = s
         workers = []
+        store.settingsChanged()
     }
 
     /// Saves, and tells the menu bar and widget.
@@ -144,10 +162,22 @@ struct SettingsView: View {
         store.settingsChanged()
     }
 
+    /// Account names from Cloudflare, and any other accounts the token can read (connected before FlareMeter kept
+    /// several).
     private func loadDetails() async {
         guard settings.isComplete else { return }
         let found = (try? await CloudflareClient(settings: settings).accounts()) ?? []
-        accounts = found.isEmpty ? [CloudflareClient.Account(id: settings.accountID, name: settings.accountID)] : found
+        let known = Set(settings.savedAccounts.map { "\($0.id)|\($0.name)" })
+        if found.contains(where: { !known.contains("\($0.id)|\($0.name)") }) {
+            var s = settings
+            do {
+                try s.connect(found, token: settings.apiToken)
+            } catch {
+                message = error.localizedDescription
+                return
+            }
+            apply(s)
+        }
         await loadWorkers()
     }
 

@@ -39,7 +39,7 @@ struct CloudflareClient {
                     async let today = self.result(spec, from: dayStart, to: end)
                     async let month = self.result(spec, from: monthStart, to: end)
                     let (t, m) = await (today, month)
-                    let limit = self.settings.plan == .free ? spec.freeDailyLimit : spec.paidMonthlyIncluded
+                    let limit = spec.limit(plan: self.settings.plan, at: now)
                     var error: String? = nil
                     if case .failure(let e) = t { error = e.localizedDescription } else if case .failure(let e) = m { error = e.localizedDescription }
                     return (i, MetricValue(id: spec.id, label: spec.label, today: try? t.get(), month: try? m.get(), error: error,
@@ -56,14 +56,7 @@ struct CloudflareClient {
             throw ClientError.graphQL(error)
         }
 
-        var overage: Double? = nil
-        if settings.plan == .paid {
-            overage = zip(Metrics.all, values).reduce(0.0) { total, pair in
-                let (spec, v) = pair
-                guard let price = spec.paidPricePerUnit, let included = spec.paidMonthlyIncluded, let month = v.month else { return total }
-                return total + max(0, month - included) * price
-            }
-        }
+        let overage = settings.plan == .paid ? Metrics.estimatedOverageUSD(values, at: now) : nil
         return UsageSnapshot(fetchedAt: now, plan: settings.plan, values: values, estimatedOverageUSD: overage, source: settings.cacheKey)
     }
 
@@ -76,6 +69,7 @@ struct CloudflareClient {
         case .count: return "count"
         case .bytes: return "bytes"
         case .neurons: return "neurons"
+        case .milliseconds: return "ms"
         }
     }
 
@@ -120,7 +114,7 @@ struct CloudflareClient {
                 values.append(n.doubleValue)
             }
         }
-        return spec.aggregate == "max" ? (values.max() ?? 0) : values.reduce(0, +)
+        return (spec.aggregate == "max" ? (values.max() ?? 0) : values.reduce(0, +)) * spec.scale
     }
 
     struct Account: Identifiable, Hashable {

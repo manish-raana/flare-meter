@@ -11,6 +11,8 @@ final class UsageStore {
     /// Why the latest refresh failed (`snapshot`, if any, is the last good one).
     private(set) var problem: String?
     private(set) var refreshing = false
+    /// The settings changed during a fetch: fetch again with them when it ends.
+    @ObservationIgnored private var refreshAgain = false
     private(set) var settings = UsageSettings.load()
     /// Nil for the screenshot store.
     @ObservationIgnored private var alerts: UsageAlerts?
@@ -53,8 +55,27 @@ final class UsageStore {
     /// After the settings were saved: show them, and fetch with them in the menu bar and widget.
     func settingsChanged() {
         settings = UsageSettings.load()
+        // Another account or Worker: don't keep showing the last one's numbers while fetching.
+        if snapshot?.source != settings.cacheKey {
+            snapshot = SnapshotCache.load().flatMap { $0.source == settings.cacheKey ? $0 : nil }
+            problem = nil
+        }
         WidgetCenter.shared.reloadAllTimelines()
         Task { await refresh() }
+    }
+
+    /// Shows another connected account, from the menu bar panel.
+    func switchAccount(to id: String) {
+        var s = UsageSettings.load()
+        guard s.accountID != id else { return }
+        s.select(id)
+        do {
+            try s.save()
+        } catch {
+            problem = error.localizedDescription
+            return
+        }
+        settingsChanged()
     }
 
     /// The fullest metric against its limit.
@@ -67,19 +88,29 @@ final class UsageStore {
 
     /// Fetches unless the shared reading is younger than `maxAge` (0, the refresh button: always).
     func refresh(maxAge: TimeInterval = 0) async {
-        guard !refreshing else { return }
+        guard !refreshing else {
+            if maxAge == 0 { refreshAgain = true }
+            return
+        }
         settings = UsageSettings.load()
         guard settings.isComplete else {
             problem = nil
             return
         }
         refreshing = true
-        defer { refreshing = false }
         let result = await UsageRefresher.load(maxAge: maxAge)
-        if let s = result.snapshot { show(s) }
-        problem = result.problem
+        refreshing = false
+        // A fetch for settings that have since changed (another account) isn't shown.
+        if result.snapshot.map({ $0.source == settings.cacheKey }) ?? true {
+            if let s = result.snapshot { show(s) }
+            problem = result.problem
+        }
         // The widget then reloads from the reading just saved, without fetching.
         if result.fetched { WidgetCenter.shared.reloadAllTimelines() }
+        if refreshAgain {
+            refreshAgain = false
+            await refresh()
+        }
     }
 
     /// Shows the shared reading if it's newer than ours (the widget fetched it).

@@ -1,0 +1,44 @@
+name: CI
+
+# Run by hand from the Actions tab (Run workflow) while Actions isn't available on this account, so pull requests and
+# pushes don't show a failure. To run it on every pull request again, add `pull_request:` and `push: branches: [main]`.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  app:
+    name: App (build and unit tests)
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install xcodegen
+      - run: xcodegen generate
+      # Unsigned, with the token kept in the App Group: CI has no Apple team.
+      - run: >
+          xcodebuild test -project FlareMeter.xcodeproj -scheme FlareMeter -destination 'platform=macOS'
+          CODE_SIGNING_ALLOWED=NO CFU_KEYCHAIN=NO -quiet
+
+  web:
+    name: Website (lint, types, tests, build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      # LayoutProps, RouteContext and friends are generated types.
+      - run: npx next typegen && npx tsc --noEmit
+      - run: npx tsc -p worker
+      - run: npm test
+      - run: npm run build

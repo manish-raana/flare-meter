@@ -43,12 +43,19 @@ Routing, enable it, add your Gmail as a destination (confirm the verification em
 
 ## Each release
 
-1. Check the limits and prices in `Shared/Metrics.swift` against Cloudflare's pricing pages; update `pricingAsOf`.
+1. Check the limits and prices in `Shared/Limits.json` against Cloudflare's pricing pages; update `asOf` and
+   `lastReviewed`. The app and the website both read this file.
 2. Raise `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` in `project.yml`.
 3. `scripts/release.sh`: archives, signs with Developer ID, notarizes and staples the app and DMG, puts the DMG in
-   `web/public/downloads/` and `web/public/FlareMeter.dmg`, and updates `web/public/appcast.xml`.
-4. `scripts/deploy-site.sh`. Existing users get the update through Sparkle; new users download `FlareMeter.dmg`.
-5. Tag the release on GitHub (`git tag v<version> && git push --tags`) and attach the DMG to a GitHub release.
+   `web/public/downloads/` and `web/public/FlareMeter.dmg`, and updates `web/public/appcast.xml`. If the GitHub CLI is
+   signed in (`brew install gh && gh auth login`), it also tags `v<version>` and attaches the DMG to a GitHub release
+   (`scripts/github-release.sh`); otherwise it skips that. Nothing here uses GitHub Actions.
+4. Commit `web/public/` and the version bump, and push.
+5. `scripts/deploy-site.sh`. The DMGs ship with the site. Existing users get the update through Sparkle; new users
+   download `FlareMeter.dmg`.
+
+If a deploy is ever missing a DMG, the site's Worker (`web/worker/`) redirects that download to the GitHub release of
+the same version, and `deploy-site.sh` warns about it first.
 
 ## Launch checklist
 

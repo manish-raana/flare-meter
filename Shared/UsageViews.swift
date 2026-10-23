@@ -144,13 +144,23 @@ struct PlanStatus: View {
     let snapshot: UsageSnapshot
 
     var body: some View {
-        if let usd = snapshot.estimatedOverageUSD, usd >= 0.005 {
-            Label(usd.formatted(.currency(code: "USD")) + " over", systemImage: "dollarsign.circle.fill").foregroundStyle(.orange)
-        } else if snapshot.plan == .free, (snapshot.ranked.first?.fraction(plan: .free) ?? 0) >= 1 {
-            Label("Limit reached", systemImage: "exclamationmark.octagon.fill").foregroundStyle(.red)
-        } else {
-            Label("Within plan", systemImage: "checkmark.circle.fill").foregroundStyle(.secondary)
+        Group {
+            if let usd = snapshot.estimatedOverageUSD, usd >= 0.005 {
+                Label(usd.formatted(.currency(code: "USD")) + " over", systemImage: "dollarsign.circle.fill").foregroundStyle(.orange)
+            } else if snapshot.plan == .free, (snapshot.ranked.first?.fraction(plan: .free) ?? 0) >= 1 {
+                Label("Limit reached", systemImage: "exclamationmark.octagon.fill").foregroundStyle(.red)
+            } else {
+                Label("Within plan", systemImage: "checkmark.circle.fill").foregroundStyle(.secondary)
+            }
         }
+        .help(billText)
+    }
+
+    /// Paid: "Estimated bill this month: about $7.40, including the $5.00 Workers Paid subscription."
+    private var billText: String {
+        guard let bill = snapshot.estimatedBillUSD else { return "" }
+        return "Estimated bill this month: about \(bill.formatted(.currency(code: "USD"))), including the "
+            + "\(Metrics.paidBaseUSD.formatted(.currency(code: "USD"))) Workers Paid subscription."
     }
 }
 

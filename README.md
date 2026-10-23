@@ -55,6 +55,8 @@ starts to grow, or usage suddenly runs away, it tells you with a notification.
 - **Automatic refresh.** Every 15 minutes, and again when your Mac wakes from sleep.
 - **Simple setup.** Paste one read-only API token, then pick the account, Worker (or all Workers) and plan. Changes
   save immediately.
+- **Several accounts.** Add another account's token in Settings, then switch between accounts from the menu bar panel.
+  Each account keeps its own Worker and plan.
 - **Quiet by default.** Metrics your account doesn't use, or that Cloudflare doesn't return, are hidden.
 - **Light and dark.** Follows your Mac's appearance.
 
@@ -106,6 +108,7 @@ All values come from Cloudflare's [GraphQL Analytics API](https://developers.clo
 | Metric             | Workers Free (daily) | Workers Paid (included / month) | Paid overage price  |
 | ------------------ | -------------------- | ------------------------------- | ------------------- |
 | Worker requests    | 100,000              | 10 million                      | $0.30 / million     |
+| Worker CPU time    | 10 ms per request²   | 30 million ms                   | $0.02 / million ms  |
 | Worker errors      | shown, no limit      | shown, no limit                 | n/a                 |
 | DO requests        | 100,000              | 1 million                       | $0.15 / million     |
 | DO rows read       | 5 million            | 25 billion                      | $0.001 / million    |
@@ -115,12 +118,15 @@ All values come from Cloudflare's [GraphQL Analytics API](https://developers.clo
 | KV writes¹         | 1,000                | 1 million                       | $5.00 / million     |
 | D1 rows read       | 5 million            | 25 billion                      | $0.001 / million    |
 | D1 rows written    | 100,000              | 50 million                      | $1.00 / million     |
-| Workers AI neurons | 10,000               | 300,000                         | $0.011 / thousand   |
+| Workers AI neurons | 10,000               | 10,000 per day                  | $0.011 / thousand   |
 
-¹ Writes, deletes and lists.
+¹ Writes, deletes and lists. ² A per-request cap, so on Workers Free CPU time is shown without a limit.
+
+On Workers Paid the estimate also shows the bill with the $5 monthly subscription.
 
 These are Cloudflare's published limits and prices as of **October 2026**. They live in
-[Shared/Metrics.swift](Shared/Metrics.swift) together with `Metrics.pricingAsOf`, which Settings shows next to the plan.
+[Shared/Limits.json](Shared/Limits.json), which the app bundles and the website builds its tables from, together with
+`asOf`, which Settings shows next to the plan.
 Worker requests and errors can be narrowed down to a single Worker. Every other metric covers the whole account.
 
 ## Build from source
@@ -141,8 +147,13 @@ Worker requests and errors can be narrowed down to a single Worker. Every other 
    cd flare-meter
    ```
 
-2. In [Config.xcconfig](Config.xcconfig), set `CFU_TEAM_ID` to your own team ID. Leave `CFU_KEYCHAIN = NO` for a
-   Personal Team (see [where the token is kept](#where-the-token-is-kept-cfu_keychain)).
+2. Create `Local.xcconfig` next to [Config.xcconfig](Config.xcconfig) with your own team ID. It's git-ignored and
+   overrides `Config.xcconfig`. Use `CFU_KEYCHAIN = NO` for a Personal Team (see
+   [where the token is kept](#where-the-token-is-kept-cfu_keychain)).
+
+   ```sh
+   printf 'CFU_TEAM_ID = YOURTEAMID\nCFU_KEYCHAIN = NO\n' > Local.xcconfig
+   ```
 
 3. Build and install a Release copy to `/Applications`, so it runs without Xcode:
 
@@ -170,6 +181,7 @@ Worker requests and errors can be narrowed down to a single Worker. Every other 
 ## Configuration
 
 All build-time settings are in [Config.xcconfig](Config.xcconfig) and reach the app and widget through `Info.plist`.
+Put your own values in a git-ignored `Local.xcconfig`, which overrides it.
 
 | Setting                  | Purpose                                                                                         |
 | ------------------------ | ----------------------------------------------------------------------------------------------- |
@@ -221,7 +233,10 @@ All build-time settings are in [Config.xcconfig](Config.xcconfig) and reach the 
   After a fetch, the result is saved there and a Darwin notification is posted, so the other side picks up the new
   numbers without fetching again.
 - **Overage.** On Workers Paid, the estimated charge is Σ max(0, month − included) × price, summed over every metric
-  that has a price.
+  that has a price. Workers AI's allowance is daily, so its "included" counts the days of the month so far. The menu bar
+  adds the $5 subscription to show the month's bill.
+- **Accounts.** Each connected account has its own token. The shown account's settings are what the menu bar and the
+  widget read; switching saves the Worker and plan you'd picked for the account you leave.
 - **Alerts** ([App/UsageAlerts.swift](App/UsageAlerts.swift)). The menu bar app checks each new reading, including
   ones the widget fetched. Limit and budget warnings are remembered per day or month, so each is sent once. Spikes
   compare the latest reading's rate with the rate over the last day of readings, which the app keeps across restarts.
@@ -236,16 +251,19 @@ App/                      Menu bar app: entry point, panel, settings, first-laun
 Widget/                   WidgetKit extension: timeline provider and entitlements
 Shared/                   Code used by both targets
   CloudflareClient.swift  GraphQL queries, account and Worker lookup
-  Metrics.swift           Metric definitions, limits, prices, formatting
+  Metrics.swift           Metric definitions, overage estimate, formatting
+  Limits.json             Cloudflare's limits and prices, shared with the website
   Settings.swift          Settings and the shared snapshot cache (App Group)
-  TokenStore.swift        API token storage (Keychain or App Group)
+  TokenStore.swift        API token storage, one per account (Keychain or App Group)
   UsageRefresher.swift    One fetch, saved and broadcast to the other side
   UsageViews.swift        Views shared by the panel and widgets
   WidgetViews.swift       Small, medium and large widget layouts
   PrivacyInfo.xcprivacy   Privacy manifest
+Tests/                    Unit tests (limits, overage, formatting, account switching)
 scripts/
   install.sh              Builds and installs a personal Release copy
   release.sh              Developer ID build, notarization, DMG and Sparkle appcast
+  github-release.sh       Optionally attaches a DMG to a GitHub release
   deploy-site.sh          Builds web/ and deploys it to Cloudflare (flaremeter.app)
   render-marketing.sh     Renders screenshots from the real views into marketing/ and docs/images/
   make_icon.swift         Draws the app icon
@@ -276,11 +294,13 @@ widgets are recreated as animated React components in `web/src/components/mock/A
 
 Issues and pull requests are welcome. A few things help:
 
-- **Pricing changes.** Cloudflare's limits and prices change. If a number in [Shared/Metrics.swift](Shared/Metrics.swift)
+- **Pricing changes.** Cloudflare's limits and prices change. If a number in [Shared/Limits.json](Shared/Limits.json)
   is out of date, a pull request that links the pricing page is one of the most useful contributions you can make.
+- **Tests.** Run the **FlareMeter** scheme's tests in Xcode (⌘U), and `npm test` in `web/`. The CI workflow runs both,
+  started by hand from the Actions tab.
 - **Larger changes.** Open an issue first, so we can agree on the approach before you put time in.
 - **Project files.** Change [project.yml](project.yml), not the generated `FlareMeter.xcodeproj`.
-- **Your team ID.** Keep your own `CFU_TEAM_ID` out of pull requests.
+- **Your team ID.** Put your own `CFU_TEAM_ID` in `Local.xcconfig`, which git ignores, not in `Config.xcconfig`.
 - **Screenshots.** If you change how the panel or widgets look, run `scripts/render-marketing.sh` to regenerate the
   images in `marketing/` and `docs/images/` from the real views.
 
@@ -291,15 +311,16 @@ By contributing, you agree that your contribution is licensed under the [AGPL-3.
 This section is for maintainers. The one-time setup (Developer ID certificate, notarization credentials, the Sparkle
 key backup and GitHub Sponsors) is in [docs/releasing.md](docs/releasing.md). After that, each release goes like this:
 
-1. Check the limits and prices in [Shared/Metrics.swift](Shared/Metrics.swift) against Cloudflare's pricing pages
+1. Check the limits and prices in [Shared/Limits.json](Shared/Limits.json) against Cloudflare's pricing pages
    ([Workers](https://developers.cloudflare.com/workers/platform/pricing/), D1, KV, Durable Objects, Workers AI).
-   Update `pricingAsOf`.
+   Update `asOf` and `lastReviewed`.
 2. Raise `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` in [project.yml](project.yml). Sparkle compares the build
    number.
 3. Run `scripts/release.sh`. It archives the app, signs it with Developer ID, notarizes and staples the app and the
-   DMG, and updates `web/public/appcast.xml`.
-4. Run `scripts/deploy-site.sh`. Existing users get the update through Sparkle, and new users download
-   `FlareMeter.dmg`.
+   DMG, and updates `web/public/appcast.xml`. With the GitHub CLI signed in, it also attaches the DMG to a GitHub
+   release.
+4. Commit `web/public/` and the version bump, then run `scripts/deploy-site.sh`. Existing users get the update through
+   Sparkle, and new users download `FlareMeter.dmg`.
 
 `release.sh` refuses to run unless `CFU_KEYCHAIN = YES` is set, and it won't re-release a build number that is already
 in the appcast.

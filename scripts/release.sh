@@ -8,6 +8,7 @@
 #   - Notarization credentials (an app-specific password from account.apple.com):
 #       xcrun notarytool store-credentials flaremeter-notary --apple-id <apple id> --team-id <team id>
 #   - Sparkle's signing key in your login Keychain (scripts already made it; account "flaremeter").
+#   - Optional: the GitHub CLI, signed in (brew install gh && gh auth login), to also attach the DMG to a GitHub release.
 # Each release: raise MARKETING_VERSION and CURRENT_PROJECT_VERSION in project.yml (Sparkle compares the build number).
 set -eu
 cd "$(dirname "$0")/.."
@@ -17,9 +18,12 @@ SITE_URL=https://flaremeter.app
 OUT=build/release
 VERSION=$(sed -n 's/^ *MARKETING_VERSION: "\(.*\)"/\1/p' project.yml)
 BUILD=$(sed -n 's/^ *CURRENT_PROJECT_VERSION: "\(.*\)"/\1/p' project.yml)
-TEAM=$(sed -n 's/^CFU_TEAM_ID = *//p' Config.xcconfig)
+# Local.xcconfig, if any, overrides Config.xcconfig; the last setting wins.
+CONFIGS="Config.xcconfig $( [ -f Local.xcconfig ] && echo Local.xcconfig )"
+TEAM=$(cat $CONFIGS | sed -n 's/^CFU_TEAM_ID = *//p' | tail -1)
+KEYCHAIN=$(cat $CONFIGS | sed -n 's/^CFU_KEYCHAIN = *//p' | tail -1)
 
-grep -q '^CFU_KEYCHAIN = YES' Config.xcconfig || { echo "Set CFU_KEYCHAIN = YES in Config.xcconfig (paid team)."; exit 1; }
+[ "$KEYCHAIN" = YES ] || { echo "Set CFU_KEYCHAIN = YES (paid team) in Config.xcconfig or Local.xcconfig."; exit 1; }
 if [ -f web/public/appcast.xml ] && grep -q "<sparkle:version>$BUILD</sparkle:version>" web/public/appcast.xml; then
   echo "Build $BUILD is already released: raise CURRENT_PROJECT_VERSION in project.yml."; exit 1
 fi
@@ -67,4 +71,11 @@ SPARKLE_BIN=$(find build/SourcePackages ~/Library/Developer/Xcode/DerivedData -p
 "$SPARKLE_BIN/generate_appcast" --account flaremeter --download-url-prefix "$SITE_URL/downloads/" \
   --link "$SITE_URL" -o web/public/appcast.xml web/public/downloads
 
-echo "Released FlareMeter $VERSION ($BUILD). Publish with: scripts/deploy-site.sh"
+# Optional: also attach the DMG to a GitHub release (needs the GitHub CLI). The site serves its own copy either way.
+if command -v gh >/dev/null && gh auth status >/dev/null 2>&1; then
+  scripts/github-release.sh "$VERSION" || echo "The GitHub release didn't work; the DMG still ships with the site."
+else
+  echo "Skipping the GitHub release (no signed-in GitHub CLI); the DMG ships with the site."
+fi
+
+echo "Released FlareMeter $VERSION ($BUILD). Commit web/public/, then publish with: scripts/deploy-site.sh"
