@@ -8,6 +8,7 @@
 #   - Notarization credentials (an app-specific password from account.apple.com):
 #       xcrun notarytool store-credentials flaremeter-notary --apple-id <apple id> --team-id <team id>
 #   - Sparkle's signing key in your login Keychain (scripts already made it; account "flaremeter").
+#   - The GitHub CLI, signed in (brew install gh && gh auth login), for the GitHub release.
 # Each release: raise MARKETING_VERSION and CURRENT_PROJECT_VERSION in project.yml (Sparkle compares the build number).
 set -eu
 cd "$(dirname "$0")/.."
@@ -61,7 +62,8 @@ xcrun notarytool submit "$DMG" --keychain-profile "$NOTARY_PROFILE" --wait
 xcrun stapler staple "$DMG"
 spctl --assess --type open --context context:primary-signature --verbose "$DMG"
 
-# Publish: every version under downloads/ (Sparkle's feed lists them), the latest also as FlareMeter.dmg.
+# Every version under downloads/ (Sparkle's feed lists them, and generate_appcast reads them), the latest also as
+# FlareMeter.dmg. Both are git-ignored.
 mkdir -p web/public/downloads
 cp "$DMG" web/public/downloads/
 cp "$DMG" web/public/FlareMeter.dmg
@@ -70,4 +72,7 @@ SPARKLE_BIN=$(find build/SourcePackages ~/Library/Developer/Xcode/DerivedData -p
 "$SPARKLE_BIN/generate_appcast" --account flaremeter --download-url-prefix "$SITE_URL/downloads/" \
   --link "$SITE_URL" -o web/public/appcast.xml web/public/downloads
 
-echo "Released FlareMeter $VERSION ($BUILD). Publish with: scripts/deploy-site.sh"
+# The DMGs are git-ignored: GitHub Releases keeps them, and the site sends downloads there.
+scripts/github-release.sh "$VERSION"
+
+echo "Released FlareMeter $VERSION ($BUILD). Commit web/public/appcast.xml, then publish with: scripts/deploy-site.sh"

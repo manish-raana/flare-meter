@@ -42,3 +42,7 @@ next-env.d.ts
 
 # wrangler
 .wrangler/
+
+# Release DMGs: built by scripts/release.sh, kept on GitHub Releases (scripts/github-release.sh), not in git.
+/public/FlareMeter.dmg
+/public/downloads/

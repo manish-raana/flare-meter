@@ -297,15 +297,18 @@ By contributing, you agree that your contribution is licensed under the [AGPL-3.
 This section is for maintainers. The one-time setup (Developer ID certificate, notarization credentials, the Sparkle
 key backup and GitHub Sponsors) is in [docs/releasing.md](docs/releasing.md). After that, each release goes like this:
 
-1. Check the limits and prices in [Shared/Metrics.swift](Shared/Metrics.swift) against Cloudflare's pricing pages
+1. Check the limits and prices in [Shared/Limits.json](Shared/Limits.json) against Cloudflare's pricing pages
    ([Workers](https://developers.cloudflare.com/workers/platform/pricing/), D1, KV, Durable Objects, Workers AI).
-   Update `pricingAsOf`.
+   Update `asOf` and `lastReviewed`.
 2. Raise `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` in [project.yml](project.yml). Sparkle compares the build
    number.
 3. Run `scripts/release.sh`. It archives the app, signs it with Developer ID, notarizes and staples the app and the
-   DMG, and updates `web/public/appcast.xml`.
-4. Run `scripts/deploy-site.sh`. Existing users get the update through Sparkle, and new users download
-   `FlareMeter.dmg`.
+   DMG, updates `web/public/appcast.xml`, and publishes the DMG as a GitHub release (`scripts/github-release.sh`).
+4. Commit the appcast and version bump, then run `scripts/deploy-site.sh`. Existing users get the update through
+   Sparkle, and new users download `FlareMeter.dmg`.
+
+The DMGs live on GitHub Releases, not in git. The site's Worker redirects downloads there when a deploy didn't include
+them.
 
 `release.sh` refuses to run unless `CFU_KEYCHAIN = YES` is set, and it won't re-release a build number that is already
 in the appcast.
