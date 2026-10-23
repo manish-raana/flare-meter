@@ -5,7 +5,7 @@ private func spec(_ id: String) -> MetricSpec { Metrics.all.first { $0.id == id 
 
 private func utc(_ text: String) -> Date { ISO8601DateFormatter().date(from: text)! }
 
-private func value(_ id: String, today: Double? = nil, month: Double?) -> MetricValue {
+private func metricValue(_ id: String, today: Double? = nil, month: Double?) -> MetricValue {
     MetricValue(id: id, label: id, today: today, month: month, error: nil, limit: nil, unit: "count")
 }
 
@@ -56,19 +56,19 @@ final class OverageTests: XCTestCase {
     func testOverageSumsEveryPricedMetricPastItsIncludedAmount() {
         let oct15 = utc("2026-10-15T12:00:00Z")
         let values = [
-            value("workerRequests", month: 12_000_000),   // 2M over × $0.30/M = $0.60
-            value("workerCPUTime", month: 40_000_000),    // 10M ms over × $0.02/M = $0.20
-            value("aiNeurons", month: 160_000),           // 10k over 15 days' allowance × $0.011/k = $0.11
-            value("kvReads", month: 5_000_000),           // within
-            value("doStorage", month: 9_000_000_000),     // no price
-            value("workerErrors", month: 1_000_000),      // no limit
-            value("d1RowsRead", month: nil),              // not returned
+            metricValue("workerRequests", month: 12_000_000),   // 2M over × $0.30/M = $0.60
+            metricValue("workerCPUTime", month: 40_000_000),    // 10M ms over × $0.02/M = $0.20
+            metricValue("aiNeurons", month: 160_000),           // 10k over 15 days' allowance × $0.011/k = $0.11
+            metricValue("kvReads", month: 5_000_000),           // within
+            metricValue("doStorage", month: 9_000_000_000),     // no price
+            metricValue("workerErrors", month: 1_000_000),      // no limit
+            metricValue("d1RowsRead", month: nil),              // not returned
         ]
         XCTAssertEqual(Metrics.estimatedOverageUSD(values, at: oct15), 0.91, accuracy: 1e-9)
     }
 
     func testNothingOverIsZero() {
-        XCTAssertEqual(Metrics.estimatedOverageUSD([value("workerRequests", month: 1)], at: Date()), 0)
+        XCTAssertEqual(Metrics.estimatedOverageUSD([metricValue("workerRequests", month: 1)], at: Date()), 0)
     }
 
     func testBillAddsTheBaseFee() {

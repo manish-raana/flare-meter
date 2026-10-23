@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		0B739B921348171F3D6630AE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE54701229128B03120EC6A /* Settings.swift */; };
 		1433755EAFB6D2321257D42D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31C1A5737D79214EAFCFD7B /* SettingsView.swift */; };
+		18E1AC7FAA0D415DBFF81030 /* Limits.json in Resources */ = {isa = PBXBuildFile; fileRef = B5EA30D1F261C298B66841B5 /* Limits.json */; };
 		1F8E177920C708056C2CC221 /* UsageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FBB6CF530824330093A7E7 /* UsageStore.swift */; };
+		2024DC8A17BC2FAC672A233B /* FlareMeterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443D4086CF422B9CF2D3191 /* FlareMeterTests.swift */; };
 		207D3EA27065A18B55355F77 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE54701229128B03120EC6A /* Settings.swift */; };
 		2DFEE17294448F54F3C6F8D3 /* UsageRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB169371EEEA5B4844A3BBB8 /* UsageRefresher.swift */; };
 		2FBD002D7D4E446D646BCA55 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 9AA6C4F8498E25F89BE68098 /* Sparkle */; };
@@ -23,6 +25,7 @@
 		4E21AE88BB6871BD92E4450D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FB519F686FFEA98A89FF45F3 /* PrivacyInfo.xcprivacy */; };
 		5921FC550A9197CCAF0245D4 /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD33B53B2C56EEE817EA29 /* Metrics.swift */; };
 		6995BED57BD0A982F71B5864 /* FlareMeterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD5660B2359ECE0F9A3D9B /* FlareMeterApp.swift */; };
+		6A7AE6E69B07A800E30074CD /* Limits.json in Resources */ = {isa = PBXBuildFile; fileRef = B5EA30D1F261C298B66841B5 /* Limits.json */; };
 		75746E953D8D0F1808F71F5A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FB519F686FFEA98A89FF45F3 /* PrivacyInfo.xcprivacy */; };
 		7CF2B633C894693026415F6B /* UsageRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB169371EEEA5B4844A3BBB8 /* UsageRefresher.swift */; };
 		85CAFB270850F8577817FDCB /* WidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8DB1E985E172FD6F4A92E /* WidgetViews.swift */; };
@@ -46,6 +49,13 @@
 			remoteGlobalIDString = 2A00E18D9C73669114B76E53;
 			remoteInfo = FlareMeterWidget;
 		};
+		EE74BDE3DF7B5BB82B3A5B3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7A2A8126DC4810E5BBC356F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73962A9A1C642818617D7D97;
+			remoteInfo = FlareMeter;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,9 +78,11 @@
 		39606D413F558B07AFB9E165 /* FlareMeterWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FlareMeterWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E32AAD37F01BA6E9D86D148 /* MarketingRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingRenderer.swift; sourceTree = "<group>"; };
 		432B46E5FA1840DB4DFD1651 /* FlareMeterWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlareMeterWidget.entitlements; sourceTree = "<group>"; };
+		4443D4086CF422B9CF2D3191 /* FlareMeterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlareMeterTests.swift; sourceTree = "<group>"; };
 		501D60F96C8CDD4AE5DFA80B /* FlareMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlareMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54BBDB8FAC3AFF5E9119A157 /* MenuBarPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPanel.swift; sourceTree = "<group>"; };
 		75A9279CCDA25547E2F68541 /* AppUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdater.swift; sourceTree = "<group>"; };
+		805DDCA3C36A103E377CCC3D /* FlareMeterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlareMeterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		849DD722F1EC1326C9DF9744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		850B1811ED4DBD4052723D9B /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		8DE54701229128B03120EC6A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -81,6 +93,7 @@
 		AACCD30B01093EAE2A3C890D /* FlareMeterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlareMeterWidget.swift; sourceTree = "<group>"; };
 		AD1AFE1BD2CF5D697576B91E /* SetupSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSections.swift; sourceTree = "<group>"; };
 		B0FBB6CF530824330093A7E7 /* UsageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageStore.swift; sourceTree = "<group>"; };
+		B5EA30D1F261C298B66841B5 /* Limits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Limits.json; sourceTree = "<group>"; };
 		C612C227D2083B3DC00408EB /* WelcomeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeWindow.swift; sourceTree = "<group>"; };
 		DADD5660B2359ECE0F9A3D9B /* FlareMeterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlareMeterApp.swift; sourceTree = "<group>"; };
 		E31C1A5737D79214EAFCFD7B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -90,7 +103,7 @@
 		FB169371EEEA5B4844A3BBB8 /* UsageRefresher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageRefresher.swift; sourceTree = "<group>"; };
 		FB519F686FFEA98A89FF45F3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		FF2B2CDB306A1EC9A8484B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		"TEMP_B229BA5C-446E-46D6-A518-8AB45B8CC6FD" /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		"TEMP_F5795D69-205E-4E29-9B55-626010FC6447" /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,10 +149,19 @@
 			path = Widget;
 			sourceTree = "<group>";
 		};
+		81B4043BF90AFE6D841CB376 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4443D4086CF422B9CF2D3191 /* FlareMeterTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		8BFDE5AAF125399B3B086C86 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				501D60F96C8CDD4AE5DFA80B /* FlareMeter.app */,
+				805DDCA3C36A103E377CCC3D /* FlareMeterTests.xctest */,
 				39606D413F558B07AFB9E165 /* FlareMeterWidget.appex */,
 			);
 			name = Products;
@@ -149,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				F318B82AED712BE42EC6393D /* CloudflareClient.swift */,
+				B5EA30D1F261C298B66841B5 /* Limits.json */,
 				9AAD33B53B2C56EEE817EA29 /* Metrics.swift */,
 				FB519F686FFEA98A89FF45F3 /* PrivacyInfo.xcprivacy */,
 				8DE54701229128B03120EC6A /* Settings.swift */,
@@ -165,15 +188,16 @@
 			children = (
 				2EB8816B4BA0E6F60B76B1A1 /* App */,
 				8FB62A053405A0FF4134ECBB /* Shared */,
+				81B4043BF90AFE6D841CB376 /* Tests */,
 				558B4E87FF9D9D596AB328CE /* Widget */,
 				8BFDE5AAF125399B3B086C86 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		"TEMP_B6EAFF3C-7224-447C-B78D-2463420A0204" /* flare-meter */ = {
+		"TEMP_215D58BA-B04A-438C-8377-29F839C4BF7E" /* flare-meter */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_B229BA5C-446E-46D6-A518-8AB45B8CC6FD" /* Config.xcconfig */,
+				"TEMP_F5795D69-205E-4E29-9B55-626010FC6447" /* Config.xcconfig */,
 			);
 			path = "flare-meter";
 			sourceTree = "<group>";
@@ -221,6 +245,24 @@
 			productReference = 501D60F96C8CDD4AE5DFA80B /* FlareMeter.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A6DA4C3635D6A061C6039BBB /* FlareMeterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4EC487DB24DBBFBCC582F503 /* Build configuration list for PBXNativeTarget "FlareMeterTests" */;
+			buildPhases = (
+				6C7A36020D47AF81D83A1DCD /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFA9BF342D6321A1404672FA /* PBXTargetDependency */,
+			);
+			name = FlareMeterTests;
+			packageProductDependencies = (
+			);
+			productName = FlareMeterTests;
+			productReference = 805DDCA3C36A103E377CCC3D /* FlareMeterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -235,6 +277,10 @@
 						ProvisioningStyle = Automatic;
 					};
 					73962A9A1C642818617D7D97 = {
+						DevelopmentTeam = "$(CFU_TEAM_ID)";
+						ProvisioningStyle = Automatic;
+					};
+					A6DA4C3635D6A061C6039BBB = {
 						DevelopmentTeam = "$(CFU_TEAM_ID)";
 						ProvisioningStyle = Automatic;
 					};
@@ -258,6 +304,7 @@
 			projectRoot = "";
 			targets = (
 				73962A9A1C642818617D7D97 /* FlareMeter */,
+				A6DA4C3635D6A061C6039BBB /* FlareMeterTests */,
 				2A00E18D9C73669114B76E53 /* FlareMeterWidget */,
 			);
 		};
@@ -268,6 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A7AE6E69B07A800E30074CD /* Limits.json in Resources */,
 				4E21AE88BB6871BD92E4450D /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C2A5FB47E2A0FFF98F2CA0D /* Assets.xcassets in Resources */,
+				18E1AC7FAA0D415DBFF81030 /* Limits.json in Resources */,
 				75746E953D8D0F1808F71F5A /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,9 +371,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6C7A36020D47AF81D83A1DCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2024DC8A17BC2FAC672A233B /* FlareMeterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DFA9BF342D6321A1404672FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73962A9A1C642818617D7D97 /* FlareMeter */;
+			targetProxy = EE74BDE3DF7B5BB82B3A5B3C /* PBXContainerItemProxy */;
+		};
 		E1145C170D7B74F315887DBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2A00E18D9C73669114B76E53 /* FlareMeterWidget */;
@@ -333,6 +395,23 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0407CD3A07CE37827F7F9065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.manishrana.FlareMeter.Tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlareMeter.app/Contents/MacOS/FlareMeter";
+			};
+			name = Debug;
+		};
 		31B99E402EB5781D3FBE9FBF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -351,7 +430,7 @@
 		};
 		580998A7E8B6A175A720FE42 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_B229BA5C-446E-46D6-A518-8AB45B8CC6FD" /* Config.xcconfig */;
+			baseConfigurationReference = "TEMP_F5795D69-205E-4E29-9B55-626010FC6447" /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -385,7 +464,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "$(CFU_TEAM_ID)";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -407,7 +486,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Manish Rana";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -421,7 +500,7 @@
 		};
 		5E150CDDFDA8098C2ACD1CA7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_B229BA5C-446E-46D6-A518-8AB45B8CC6FD" /* Config.xcconfig */;
+			baseConfigurationReference = "TEMP_F5795D69-205E-4E29-9B55-626010FC6447" /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -455,7 +534,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "$(CFU_TEAM_ID)";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -471,7 +550,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Manish Rana";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -514,6 +593,23 @@
 			};
 			name = Release;
 		};
+		BED90E733C8BA94834FED7CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.manishrana.FlareMeter.Tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlareMeter.app/Contents/MacOS/FlareMeter";
+			};
+			name = Release;
+		};
 		CB493EE024E476F4C6FF9DC5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -533,6 +629,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4EC487DB24DBBFBCC582F503 /* Build configuration list for PBXNativeTarget "FlareMeterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0407CD3A07CE37827F7F9065 /* Debug */,
+				BED90E733C8BA94834FED7CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		8D111D5C96F0AFE3701AFAA3 /* Build configuration list for PBXNativeTarget "FlareMeter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

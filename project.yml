@@ -29,6 +29,8 @@ targets:
       path: App/Info.plist
       properties:
         CFBundleDisplayName: FlareMeter
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFUAppGroup: $(CFU_TEAM_ID).flaremeter
         SUFeedURL: $(CFU_APPCAST_URL)
         SUPublicEDKey: $(CFU_SPARKLE_PUBLIC_KEY)
@@ -67,6 +69,8 @@ targets:
       path: Widget/Info.plist
       properties:
         CFBundleDisplayName: FlareMeter
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFUAppGroup: $(CFU_TEAM_ID).flaremeter
         CFUKeychainGroup: $(CFU_KEYCHAIN_GROUP)
         NSExtension:
