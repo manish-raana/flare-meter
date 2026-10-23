@@ -47,6 +47,18 @@ targets:
       - target: FlareMeterWidget
         embed: true
       - package: Sparkle
+    scheme:
+      testTargets: [FlareMeterTests]
+  FlareMeterTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources: [Tests]
+    dependencies:
+      - target: FlareMeter
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.manishrana.FlareMeter.Tests
   FlareMeterWidget:
     type: app-extension
     platform: macOS

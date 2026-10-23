@@ -11,6 +11,8 @@ struct FlareMeterApp: App {
         #endif
         let store = UsageStore()
         _store = State(initialValue: store)
+        // Hosting unit tests: no updater or welcome window.
+        guard ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil else { return }
         _ = AppUpdater.shared
         // Runs once the app has finished launching.
         Task { @MainActor in WelcomeWindow.showIfNeeded(store: store) }
