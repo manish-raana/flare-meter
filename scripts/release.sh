@@ -19,7 +19,8 @@ OUT=build/release
 VERSION=$(sed -n 's/^ *MARKETING_VERSION: "\(.*\)"/\1/p' project.yml)
 BUILD=$(sed -n 's/^ *CURRENT_PROJECT_VERSION: "\(.*\)"/\1/p' project.yml)
 # Local.xcconfig, if any, overrides Config.xcconfig; the last setting wins.
-CONFIGS="Config.xcconfig $( [ -f Local.xcconfig ] && echo Local.xcconfig )"
+CONFIGS=Config.xcconfig
+[ ! -f Local.xcconfig ] || CONFIGS="$CONFIGS Local.xcconfig"
 TEAM=$(cat $CONFIGS | sed -n 's/^CFU_TEAM_ID = *//p' | tail -1)
 KEYCHAIN=$(cat $CONFIGS | sed -n 's/^CFU_KEYCHAIN = *//p' | tail -1)
 
