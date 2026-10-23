@@ -1,9 +1,9 @@
 name: CI
 
+# Run by hand from the Actions tab (Run workflow) while Actions isn't available on this account, so pull requests and
+# pushes don't show a failure. To run it on every pull request again, add `pull_request:` and `push: branches: [main]`.
 on:
-  push:
-    branches: [main]
-  pull_request:
+  workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.ref }}

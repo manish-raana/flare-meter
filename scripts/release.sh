@@ -8,7 +8,7 @@
 #   - Notarization credentials (an app-specific password from account.apple.com):
 #       xcrun notarytool store-credentials flaremeter-notary --apple-id <apple id> --team-id <team id>
 #   - Sparkle's signing key in your login Keychain (scripts already made it; account "flaremeter").
-#   - The GitHub CLI, signed in (brew install gh && gh auth login), for the GitHub release.
+#   - Optional: the GitHub CLI, signed in (brew install gh && gh auth login), to also attach the DMG to a GitHub release.
 # Each release: raise MARKETING_VERSION and CURRENT_PROJECT_VERSION in project.yml (Sparkle compares the build number).
 set -eu
 cd "$(dirname "$0")/.."
@@ -62,8 +62,7 @@ xcrun notarytool submit "$DMG" --keychain-profile "$NOTARY_PROFILE" --wait
 xcrun stapler staple "$DMG"
 spctl --assess --type open --context context:primary-signature --verbose "$DMG"
 
-# Every version under downloads/ (Sparkle's feed lists them, and generate_appcast reads them), the latest also as
-# FlareMeter.dmg. Both are git-ignored.
+# Publish: every version under downloads/ (Sparkle's feed lists them), the latest also as FlareMeter.dmg.
 mkdir -p web/public/downloads
 cp "$DMG" web/public/downloads/
 cp "$DMG" web/public/FlareMeter.dmg
@@ -72,7 +71,11 @@ SPARKLE_BIN=$(find build/SourcePackages ~/Library/Developer/Xcode/DerivedData -p
 "$SPARKLE_BIN/generate_appcast" --account flaremeter --download-url-prefix "$SITE_URL/downloads/" \
   --link "$SITE_URL" -o web/public/appcast.xml web/public/downloads
 
-# The DMGs are git-ignored: GitHub Releases keeps them, and the site sends downloads there.
-scripts/github-release.sh "$VERSION"
+# Optional: also attach the DMG to a GitHub release (needs the GitHub CLI). The site serves its own copy either way.
+if command -v gh >/dev/null && gh auth status >/dev/null 2>&1; then
+  scripts/github-release.sh "$VERSION" || echo "The GitHub release didn't work; the DMG still ships with the site."
+else
+  echo "Skipping the GitHub release (no signed-in GitHub CLI); the DMG ships with the site."
+fi
 
-echo "Released FlareMeter $VERSION ($BUILD). Commit web/public/appcast.xml, then publish with: scripts/deploy-site.sh"
+echo "Released FlareMeter $VERSION ($BUILD). Commit web/public/, then publish with: scripts/deploy-site.sh"

@@ -1,4 +1,4 @@
-/** Where scripts/github-release.sh uploads each version's DMG, and a copy named FlareMeter.dmg for the latest. */
+/** Where scripts/github-release.sh (optional) uploads each DMG, and a copy named FlareMeter.dmg for the latest. */
 const RELEASES = "https://github.com/manish-raana/flare-meter/releases";
 
 /**

@@ -1,7 +1,7 @@
 #!/bin/sh
-# Publishes a FlareMeter DMG as a GitHub release: tags v<version> and uploads FlareMeter-<version>.dmg plus a copy
-# named FlareMeter.dmg, which https://flaremeter.app/FlareMeter.dmg points to for the latest release. The site's Worker
-# sends downloads there when web/public/ has no copy, so the DMGs stay out of git. scripts/release.sh runs this.
+# Optional: publishes a FlareMeter DMG as a GitHub release: tags v<version> and uploads FlareMeter-<version>.dmg plus a
+# copy named FlareMeter.dmg. The site ships its own copy from web/public/; its Worker only sends downloads here when a
+# deploy is missing one. scripts/release.sh runs this when the GitHub CLI is signed in. Uses no GitHub Actions.
 #
 #   scripts/github-release.sh <version> [commit]     e.g. scripts/github-release.sh 1.0 ca30140
 #

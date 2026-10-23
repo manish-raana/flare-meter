@@ -263,7 +263,7 @@ Tests/                    Unit tests (limits, overage, formatting, account switc
 scripts/
   install.sh              Builds and installs a personal Release copy
   release.sh              Developer ID build, notarization, DMG and Sparkle appcast
-  github-release.sh       Publishes a DMG as a GitHub release
+  github-release.sh       Optionally attaches a DMG to a GitHub release
   deploy-site.sh          Builds web/ and deploys it to Cloudflare (flaremeter.app)
   render-marketing.sh     Renders screenshots from the real views into marketing/ and docs/images/
   make_icon.swift         Draws the app icon
@@ -296,8 +296,8 @@ Issues and pull requests are welcome. A few things help:
 
 - **Pricing changes.** Cloudflare's limits and prices change. If a number in [Shared/Limits.json](Shared/Limits.json)
   is out of date, a pull request that links the pricing page is one of the most useful contributions you can make.
-- **Tests.** Run the **FlareMeter** scheme's tests in Xcode (⌘U), and `npm test` in `web/`. CI runs both on every pull
-  request.
+- **Tests.** Run the **FlareMeter** scheme's tests in Xcode (⌘U), and `npm test` in `web/`. The CI workflow runs both,
+  started by hand from the Actions tab.
 - **Larger changes.** Open an issue first, so we can agree on the approach before you put time in.
 - **Project files.** Change [project.yml](project.yml), not the generated `FlareMeter.xcodeproj`.
 - **Your team ID.** Put your own `CFU_TEAM_ID` in `Local.xcconfig`, which git ignores, not in `Config.xcconfig`.
@@ -317,12 +317,10 @@ key backup and GitHub Sponsors) is in [docs/releasing.md](docs/releasing.md). Af
 2. Raise `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` in [project.yml](project.yml). Sparkle compares the build
    number.
 3. Run `scripts/release.sh`. It archives the app, signs it with Developer ID, notarizes and staples the app and the
-   DMG, updates `web/public/appcast.xml`, and publishes the DMG as a GitHub release (`scripts/github-release.sh`).
-4. Commit the appcast and version bump, then run `scripts/deploy-site.sh`. Existing users get the update through
+   DMG, and updates `web/public/appcast.xml`. With the GitHub CLI signed in, it also attaches the DMG to a GitHub
+   release.
+4. Commit `web/public/` and the version bump, then run `scripts/deploy-site.sh`. Existing users get the update through
    Sparkle, and new users download `FlareMeter.dmg`.
-
-The DMGs live on GitHub Releases, not in git. The site's Worker redirects downloads there when a deploy didn't include
-them.
 
 `release.sh` refuses to run unless `CFU_KEYCHAIN = YES` is set, and it won't re-release a build number that is already
 in the appcast.
